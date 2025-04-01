@@ -1,0 +1,8 @@
+fazer mini estrutura
+	com cordenadas ponto de partida
+	com char ***
+
+function(x, y)
+{
+	if ()
+}

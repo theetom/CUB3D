@@ -1,0 +1,33 @@
+main
+
+	if only 2 arguments 
+	if second argument finishes with .cub
+	(try "open")
+
+	parse do doc
+		(estrutura
+			~ path to texturas * 6 (cada orientacao + chao + parede)
+			~ posicao inicial
+			~ orientacao da camara
+		)
+		ver se as texturas vem primeiro
+			ver se so ha uma linha por textura
+		ver se ha algo depois do mapa
+		ver se o mapa esta bom (rodeado de 1) (ver algoritmo flood fill)
+		ver se existe no maximo uma letra no mapa (N, S, E ,W)
+		guardar esse valor na estrutura e mudar para 0;
+		passar mapa para um char ** ()
+
+		ver se existem portas (bonus)
+						\0\		\1\
+						101		000
+						\0\		\1\
+	hooks
+		esc
+		setas cima/baixo para avancar ou recuar
+		setas lados orientacao camara
+		barra espaco disparar (bonus)
+
+
+
+	input verification
