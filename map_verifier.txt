@@ -1,8 +1,33 @@
 fazer mini estrutura
-	com cordenadas ponto de partida
-	com char ***
+	com cordenadas do ponto de partida
+	forma de guardar se cada ponto ja foi "pintado"
+
+portanto char ***
+			[x][y][0] vai ter se e uma parede ou espaco aberto
+			[x][y][1] vai ter um bool se foi pintado ou nao
+
+111111
+100101
+101001
+1100N1
+111111
+
+este mapa tem que ser valido
 
 function(x, y)
 {
-	if ()
+	if (x <= 0 || y <=0 || char[x][y] == painted)
+		return ;
+	paint position
+
+	se quisermos so verificacao horizontal/vertical
+	function (x - 1, y);
+	function (x, y - 1);
+	function (x + 1, y);
+	function (x, y + 1);
+	se tambem quisermos diagonal
+	function (x - 1, y - 1);
+	function (x + 1, y - 1);
+	function (x + 1, y + 1);
+	function (x - 1, y + 1);
 }
