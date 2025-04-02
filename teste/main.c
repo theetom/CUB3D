@@ -7,9 +7,19 @@
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <sys/time.h>
 
 # define mapWidth 24
 # define mapHeight 24
+
+/* 
+
+
+
+
+VER https://harm-smits.github.io/42docs/projects/cub3d
+
+*/
 
 typedef struct s_data
 {
@@ -29,6 +39,8 @@ typedef struct s_data
   
 	double time; //time of current frame
 	double oldTime; //time of previous frame
+	double moveSpeed;
+	double rotSpeed;
 
 }	t_data;
 
@@ -84,6 +96,14 @@ int color_from_c_to_int(ColorRGB color)
 	return(color.r << 24| color.g << 16 | color.b << 8 | 100);
 }
 
+double getTicks()
+{
+    struct timeval tv;
+
+    gettimeofday(&tv, NULL);
+    return (tv.tv_sec * 1000.0) + (tv.tv_usec / 1000.0);
+}
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -92,10 +112,35 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void create_image(t_data *data)
+/* void ola()
+{
+
+} */
+
+int	game_loop(t_data *data)
 {
 	int x = 0;
+	char fps_text[100], speed_text[100];
 
+	mlx_destroy_image(data->mlx, data->img);
+	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
+	data->time = getTicks();
+
+    double frameTime = (data->time - data->oldTime) / 1000.0;
+    data->oldTime = data->time;
+	if (frameTime > 0)
+	{
+        sprintf(fps_text, "FPS: %.2f", 1.0 / frameTime);
+    }
+	else
+	{
+        sprintf(fps_text, "FPS: --");
+    }
+
+    // Speed modifiers
+    data->moveSpeed = frameTime * 5.0;
+    data->rotSpeed = frameTime * 3.0;
+	sprintf(speed_text, "Move Speed: %.5f, Rot Speed: %.5f", data->moveSpeed, data->rotSpeed);
 	while (x < data->img_w)
 	{
 		double cameraX = 2 * x / data->img_w - 1; //x-coordinate in camera space
@@ -183,35 +228,79 @@ void create_image(t_data *data)
 			color = dimColor(color);
 		}
 		int y = drawStart;
+		printf("end %d start %d\n", drawEnd, drawStart);
 		while (y < drawEnd)
 		{
-			printf("%d\n", color_from_c_to_int(color));
-			my_mlx_pixel_put(data, x, y++, color_from_c_to_int(color));
+			my_mlx_pixel_put(data, x, y, color_from_c_to_int(color));
+			y++;
 		}
-		printf("ola\n");
 		x++;
 	}
-	printf("olaboa tarde\n");
+	data->oldTime = data->time;
+
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	mlx_string_put(data->mlx, data->mlx_win, 10, 20, 0xFFFFFF, fps_text);
+    mlx_string_put(data->mlx, data->mlx_win, 10, 40, 0xFFFFFF, speed_text);
 }
 
-static void	render(t_data *data)
+/* static void	render(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
 	create_image(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
-}
+} */
 
 int delete_everything(t_data *data)
 {
-	(void)data;
+	mlx_destroy_window(data->mlx, data->mlx_win);
 	exit(0);
+}
+
+bool is_wall(t_data *data, double x, double y)
+{
+    int mapX = (int)x;
+    int mapY = (int)y;
+    return (worldMap[mapX][mapY]);
 }
 
 int	keypress(int k, t_data *data)
 { 
-	if (k == 0xff1b)
+	if (k == 0xff1b) // esc
 		delete_everything(data);
+	if (k == 119) // w
+	{
+		if (!is_wall(data, data->posX + data->dirX * data->moveSpeed, data->posY))
+            data->posX += data->dirX * data->moveSpeed;
+        if (!is_wall(data, data->posX, data->posY + data->dirY * data->moveSpeed))
+            data->posY += data->dirY * data->moveSpeed;
+	}
+	if (k == 115) // s
+	{
+		if (!is_wall(data, data->posX - data->dirX * data->moveSpeed, data->posY))
+			data->posX -= data->dirX * data->moveSpeed;
+		if (!is_wall(data, data->posX, data->posY - data->dirY * data->moveSpeed))
+			data->posY -= data->dirY * data->moveSpeed;
+	}
+	if (k == 100) // D
+    {
+        double oldDirX = data->dirX;
+        data->dirX = data->dirX * cos(-data->rotSpeed) - data->dirY * sin(-data->rotSpeed);
+        data->dirY = oldDirX * sin(-data->rotSpeed) + data->dirY * cos(-data->rotSpeed);
+        double oldPlaneX = data->planeX;
+        data->planeX = data->planeX * cos(-data->rotSpeed) - data->planeY * sin(-data->rotSpeed);
+        data->planeY = oldPlaneX * sin(-data->rotSpeed) + data->planeY * cos(-data->rotSpeed);
+    }
+    if (k == 97) // A
+    {
+        double oldDirX = data->dirX;
+        data->dirX = data->dirX * cos(data->rotSpeed) - data->dirY * sin(data->rotSpeed);
+        data->dirY = oldDirX * sin(data->rotSpeed) + data->dirY * cos(data->rotSpeed);
+        double oldPlaneX = data->planeX;
+        data->planeX = data->planeX * cos(data->rotSpeed) - data->planeY * sin(data->rotSpeed);
+        data->planeY = oldPlaneX * sin(data->rotSpeed) + data->planeY * cos(data->rotSpeed);
+    }
+    return 0;
 }
 
 void	ft_hooks(t_data *data)
@@ -223,7 +312,6 @@ static void mlx_data_init(t_data *data)
 {
 	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, "My CUB3D!");
-	ft_hooks(data);
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 }
@@ -240,10 +328,11 @@ int main(int argc, char *argv[])
   
 	data.time = 0; //time of current frame
 	data.oldTime = 0; //time of previous frame
-
+	
 	mlx_data_init(&data);
-	create_image(&data);
-	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
+	ft_hooks(&data);
+	mlx_loop_hook(data.mlx, game_loop, &data);
+/* 	create_image(&data); */
 	mlx_loop(data.mlx);
 }
 
