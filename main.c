@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/11 15:50:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:10:08 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	display_fps(t_data *data) /* put after put iamge to window because of mlx s
 
 	data->time = getTicks();
 
-	// printf("x : %f y : %f\n", data->posX, data->posY);
+	printf("x : %f y : %f\n", data->posX, data->posY);
 
 	frameTime = (data->time - data->oldTime) / 1000.0;
     data->oldTime = data->time;
@@ -40,24 +40,25 @@ void	display_fps(t_data *data) /* put after put iamge to window because of mlx s
     mlx_string_put(data->mlx, data->mlx_win, 10, 40, 0x00FFFFFF, speed_text);
 	sprintf(ptr, "dir x : %f dir y : %f", data->dirX, data->dirY);
 	mlx_string_put(data->mlx, data->mlx_win, 10, 60, 0x00FFFFFF, ptr);
+	/* 	while (1 / frameTime > 90)
+		{
+			data->time = getTicks();
+			frameTime = (data->time - data->oldTime) / 1000.0;
+		} */
 }
-
 
 int	render(t_data *data)
 {
-	double	frameTime;
-
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
 	create_image(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	display_fps(data);
-	while (1 / frameTime > 90)
+/* 	while (1 / frameTime > 90)
 	{
 		data->time = getTicks();
 		frameTime = (data->time - data->oldTime) / 1000.0;
-	}
-
+	} */
 	return 0;
 }
 
@@ -105,6 +106,7 @@ int	keypress(int k, t_data *data)
       data->planeX = data->planeX * cos(data->rotSpeed) - data->planeY * sin(data->rotSpeed);
       data->planeY = oldPlaneX * sin(data->rotSpeed) + data->planeY * cos(data->rotSpeed);
 	}
+	return 0;
 }
 
 void	ft_hooks(t_data *data)
@@ -125,6 +127,9 @@ int main(int argc, char *argv[])
 {
 	t_data	data = {0};
 
+	(void)argv;
+	(void)argc;
+
 	int row0[] = {1,1,1,1,1,1};
 	int row1[] = {1,0,0,0,0,1};
 	int row2[] = {1,1,0,0,0,1};
@@ -136,8 +141,8 @@ int main(int argc, char *argv[])
 
 	data.worldMap = worldMap;
 
-	data.img_h = 480;
-	data.img_w = 640;
+	data.img_h = 1080 * 2;
+	data.img_w = 1920 * 2;
 	data.posX = 3, data.posY = 3;  //x and y start position
 	data.dirX = -1, data.dirY = 0; //initial direction vector
 	data.planeX = 0, data.planeY = 0.66; //the 2d raycaster version of camera plane
@@ -151,6 +156,7 @@ int main(int argc, char *argv[])
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_loop(data.mlx);
+	return (0);
 }
 
 
