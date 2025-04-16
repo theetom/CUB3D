@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/15 16:10:08 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:37:33 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	display_fps(t_data *data) /* put after put iamge to window because of mlx s
 
 	data->time = getTicks();
 
-	printf("x : %f y : %f\n", data->posX, data->posY);
+	// printf("x : %f y : %f\n", data->posX, data->posY);
 
 	frameTime = (data->time - data->oldTime) / 1000.0;
     data->oldTime = data->time;
@@ -130,19 +130,26 @@ int main(int argc, char *argv[])
 	(void)argv;
 	(void)argc;
 
-	int row0[] = {1,1,1,1,1,1};
-	int row1[] = {1,0,0,0,0,1};
-	int row2[] = {1,1,0,0,0,1};
-	int row3[] = {1,0,0,0,0,1};
-	int row4[] = {1,0,0,0,0,1};
-	int row5[] = {1,1,1,1,1,1};
+	int row0[] = {1,1,1,1,1,0,1,1,1,1,1,1};
+	int row1[] = {1,0,0,0,0,0,0,1,0,0,0,1};
+	int row2[] = {1,0,0,1,0,0,0,0,0,0,0,1};
+	int row3[] = {1,0,0,0,0,1,1,0,0,0,0,1};
+	int row4[] = {1,0,0,0,0,1,1,0,0,0,0,1};
+	int row5[] = {1,0,1,0,0,1,1,0,0,0,0,1};
+	int row6[] = {1,0,0,0,0,1,1,0,0,0,1,1};
+	int row7[] = {1,0,0,1,1,0,0,1,1,0,0,1};
+	int row8[] = {1,0,0,1,1,0,0,1,1,0,0,1};
+	int row9[] = {1,0,0,0,0,0,0,0,0,0,0,1};
+	int row10[] = {1,0,0,0,0,0,0,0,0,0,0,1};
+	int row11[] = {1,1,1,1,1,1,1,1,1,1,1,1};
 	
-	int *worldMap[] = {row0, row1, row2, row3, row4, row5};
+	
+	int *worldMap[] = {row0, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11};
 
 	data.worldMap = worldMap;
 
-	data.img_h = 1080 * 2;
-	data.img_w = 1920 * 2;
+	data.img_h = 1080;
+	data.img_w = 1920;
 	data.posX = 3, data.posY = 3;  //x and y start position
 	data.dirX = -1, data.dirY = 0; //initial direction vector
 	data.planeX = 0, data.planeY = 0.66; //the 2d raycaster version of camera plane

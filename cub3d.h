@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/15 12:21:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:31:26 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct s_ColorRGB
 t_ColorRGB	dimColor(t_ColorRGB color);
 int			color_atoi(t_ColorRGB color);
 
+
+void	ft_hooks(t_data *data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		draw_vertical_line(int x, int start, int end, int color, t_data *data);
 double		getTicks(void);
