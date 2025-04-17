@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/17 17:00:00 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:40:04 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static int mlx_data_init(t_data *data)
 	if ((data->mlx = mlx_init()) == NULL)
 		return (0);
 	mlx_get_screen_size(data->mlx, &data->img_w, &data->img_h);
+	data->img_w /= 2;
+	data->img_h /= 2;
 	if ((data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, "My CUB3D!")) == NULL)
 		return (0);
 	ft_hooks(data);
@@ -113,7 +115,7 @@ int main(int argc, char *argv[])
 
 	data.worldMap = worldMap;
 
-	data.posX = 3, data.posY = 3;  //x and y start position
+	data.posX = 4, data.posY = 3;  //x and y start position
 	data.dirX = -1, data.dirY = 0; //initial direction vector
 	data.planeX = 0, data.planeY = 0.66; //the 2d raycaster version of camera plane
 	
@@ -124,9 +126,9 @@ int main(int argc, char *argv[])
 	i = (bool)mlx_data_init(&data);
 	if (i == false)
 		return (1);
-	// printf("%d");
-	// data.img_w /= 2;
-	// data.img_h /= 2;
+	printf("antes width: %d height %d\n", data.img_w, data.img_h);
+
+	printf("depois width: %d height %d\n", data.img_w, data.img_h);
 	create_image(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);

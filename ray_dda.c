@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_dda.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:51:47 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/15 12:13:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:55:31 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,12 @@ void ray_dda(t_math *math, t_data *data)
 			}
 			//Check if ray has hit a wall
 			// printf("map x%d, mapy%d \n", mapX, mapY);
-			if(data->worldMap[math->map_x][math->map_y] > 0)
+			printf("x:%d y:%d\n", math->map_x, math->map_y);
+			if(	math->map_x >= 0 && math->map_y >= 0	&&	\
+				data->worldMap[math->map_x][math->map_y] > 0)
+			{
 				hit = 1;
+			}
 		}
 
 }
