@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/17 14:51:45 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:16:36 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
 	i = (bool)mlx_data_init(&data);
 	if (i == false)
 		return (1);
-	printf("%d")
+	// printf("%d");
 	// data.img_w /= 2;
 	// data.img_h /= 2;
 	create_image(&data);
