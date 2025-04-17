@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:49:34 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/15 23:50:29 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:49:49 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	display_fps(t_data *data) /* put after put iamge to window because of mlx s
 
 	data->time = getTicks();
 
-	printf("x : %f y : %f\n", data->posX, data->posY);
+	// printf("x : %f y : %f\n", data->posX, data->posY);
 
 	frameTime = (data->time - data->oldTime) / 1000.0;
     data->oldTime = data->time;
@@ -40,10 +40,9 @@ void	display_fps(t_data *data) /* put after put iamge to window because of mlx s
     mlx_string_put(data->mlx, data->mlx_win, 10, 40, 0x00FFFFFF, speed_text);
 	sprintf(ptr, "dir x : %f dir y : %f", data->dirX, data->dirY);
 	mlx_string_put(data->mlx, data->mlx_win, 10, 60, 0x00FFFFFF, ptr);
-	while (1 / frameTime > 20)
+/* 	while (1 / frameTime > 20)
 	{
 		data->time = getTicks();
 		frameTime = (data->time - data->oldTime) / 1000.0;
-		usleep(10);
-	}
+	} */
 }

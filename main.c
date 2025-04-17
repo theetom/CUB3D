@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/16 00:39:36 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:51:45 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,21 @@ int main(int argc, char *argv[])
 	(void)argv;
 	(void)argc;
 
-	int row0[] = {1,1,1,1,1,1};
-	int row1[] = {1,0,0,0,0,1};
-	int row2[] = {1,1,0,0,0,1};
-	int row3[] = {1,0,0,0,0,1};
-	int row4[] = {1,0,0,0,0,1};
-	int row5[] = {1,1,1,1,1,1};
+	int row0[] = {1,1,1,1,1,0,1,1,1,1,1,1};
+	int row1[] = {1,0,0,0,0,0,0,1,0,0,0,1};
+	int row2[] = {1,0,0,1,0,0,0,0,0,0,0,1};
+	int row3[] = {1,0,0,0,0,1,1,0,0,0,0,1};
+	int row4[] = {1,0,0,0,0,1,1,0,0,0,0,1};
+	int row5[] = {1,0,1,0,0,1,1,0,0,0,0,1};
+	int row6[] = {1,0,0,0,0,1,1,0,0,0,1,1};
+	int row7[] = {1,0,0,1,1,0,0,1,1,0,0,1};
+	int row8[] = {1,0,0,1,1,0,0,1,1,0,0,1};
+	int row9[] = {1,0,0,0,0,0,0,0,0,0,0,1};
+	int row10[] = {1,0,0,0,0,0,0,0,0,0,0,1};
+	int row11[] = {1,1,1,1,1,1,1,1,1,1,1,1};
 	
-	int *worldMap[] = {row0, row1, row2, row3, row4, row5};
+	
+	int *worldMap[] = {row0, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11};
 
 	data.worldMap = worldMap;
 
@@ -115,9 +122,10 @@ int main(int argc, char *argv[])
 	bool i;
 	i = (bool)mlx_data_init(&data);
 	if (i == false)
-	return (1);
-	data.img_w /= 2;
-	data.img_h /= 2;
+		return (1);
+	printf("%d")
+	// data.img_w /= 2;
+	// data.img_h /= 2;
 	create_image(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);
