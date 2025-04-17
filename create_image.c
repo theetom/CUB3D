@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:55:03 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/16 16:43:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:00:36 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,10 @@ int create_image(t_data *data)
 	t_math	math;
 	int h = data->img_h;
 
-	// render_floor(&math, data, h / 2);
+	render_floor(&math, data, h / 2);
 	render_walls(&math, data, h);
  
 
 	
 	return (0);
 }
-
