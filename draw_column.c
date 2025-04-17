@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_column.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/15 13:04:36 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:55:46 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 		math->perpWallDist = (math->sideDistX - math->deltaDistX);
 	else
 		math->perpWallDist = (math->sideDistY - math->deltaDistY);
-	lineHeight = (int)( h/ math->perpWallDist);
+	lineHeight = (int)( h / math->perpWallDist) * 0.75;
 	drawStart = -lineHeight / 2 + h / 2;
 	if(drawStart < 0)
 		drawStart = 0;
