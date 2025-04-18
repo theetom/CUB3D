@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:55:03 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/17 17:38:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/18 02:01:29 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,8 @@ int create_image(t_data *data)
 	t_math	math;
 	int h = data->img_h;
 
-	my_mlx_pixel_put(data, 1919, 522, 0xff0000);
-
 	render_floor(&math, data, h);
 	render_walls(&math, data, h);
  
-
-	
 	return (0);
 }

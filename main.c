@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/17 17:40:04 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/18 01:22:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int mlx_data_init(t_data *data)
 	if ((data->mlx = mlx_init()) == NULL)
 		return (0);
 	mlx_get_screen_size(data->mlx, &data->img_w, &data->img_h);
-	data->img_w /= 2;
+	data->img_w /= 4;
 	data->img_h /= 2;
 	if ((data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, "My CUB3D!")) == NULL)
 		return (0);
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 	(void)argv;
 	(void)argc;
 
-	int row0[] = {1,1,1,1,1,0,1,1,1,1,1,1};
+	int row0[] = {1,1,1,1,1,1,1,1,1,1,1,1};
 	int row1[] = {1,0,0,0,0,0,0,1,0,0,0,1};
 	int row2[] = {1,0,0,1,0,0,0,0,0,0,0,1};
 	int row3[] = {1,0,0,0,0,1,1,0,0,0,0,1};
@@ -126,9 +126,6 @@ int main(int argc, char *argv[])
 	i = (bool)mlx_data_init(&data);
 	if (i == false)
 		return (1);
-	printf("antes width: %d height %d\n", data.img_w, data.img_h);
-
-	printf("depois width: %d height %d\n", data.img_w, data.img_h);
 	create_image(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);

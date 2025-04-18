@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/17 16:58:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/18 01:59:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # define mapWidth 6
 # define mapHeight 6
 
+enum DIR{
+	EAST,
+	WEST,
+	SOUTH,
+	NORTH
+};
+
 typedef struct s_math
 {
 	double	camera_x;
@@ -42,6 +49,7 @@ typedef struct s_math
 	double	perpWallDist;
 	int		stepX;
 	int		stepY;
+	int		wall_dir;
 
 	int		hit;
 	int		side;

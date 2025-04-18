@@ -6,11 +6,23 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/17 17:30:04 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/18 01:59:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_ColorRGB	get_color(t_math *math)
+{
+	if (math->wall_dir == 0)
+		return ((t_ColorRGB){255, 0, 0});
+	if (math->wall_dir == 1)
+		return ((t_ColorRGB){255, 0, 255});
+	if (math->wall_dir == 2)
+		return ((t_ColorRGB){255, 255, 255});
+	if (math->wall_dir == 3)
+		return ((t_ColorRGB){255, 255, 0});
+}
 
 void draw_column(t_data *data, t_math *math, int x, int h)
 {
@@ -30,9 +42,11 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 	drawEnd = lineHeight / 2 + h / 2;
 	if(drawEnd >= h)
 		drawEnd = h - 1;
-	color = (t_ColorRGB){255, 0, 0};
-	if (math->side == 1)
-		color = dimColor(color);
+	color = get_color(math);
+/* 	if (math->side == 1)
+		color = dimColor(color); */
 	// printf("x;%d start;%d end;%d color;%d\n",x, drawStart, drawEnd, color_atoi(color));
 	draw_vertical_line(x, drawStart, drawEnd, color_atoi(color), data);
+	draw_vertical_line(x + 1, drawStart, drawEnd, color_atoi(color), data);
+	draw_vertical_line(x + 2, drawStart, drawEnd, color_atoi(color), data);
 }
