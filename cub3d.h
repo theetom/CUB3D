@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/15 12:21:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/18 01:59:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # define mapWidth 6
 # define mapHeight 6
 
+enum DIR{
+	EAST,
+	WEST,
+	SOUTH,
+	NORTH
+};
+
 typedef struct s_math
 {
 	double	camera_x;
@@ -42,6 +49,7 @@ typedef struct s_math
 	double	perpWallDist;
 	int		stepX;
 	int		stepY;
+	int		wall_dir;
 
 	int		hit;
 	int		side;
@@ -81,14 +89,20 @@ typedef struct s_ColorRGB
 t_ColorRGB	dimColor(t_ColorRGB color);
 int			color_atoi(t_ColorRGB color);
 
+
+void	ft_hooks(t_data *data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		draw_vertical_line(int x, int start, int end, int color, t_data *data);
-double		getTicks(void);
 int			create_image(t_data *data);
 void		ray_dda(t_math *math, t_data *data);
 void		init_math(t_data *data, t_math *math, int x);
 void		find_ray_angle(t_math *math, t_data *data);
 void		draw_column(t_data *data, t_math *math, int x, int h);
 
+
+//	TIME
+
+void		display_fps(t_data *data);
+double		getTicks(void);
 
 # endif

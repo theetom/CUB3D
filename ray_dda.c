@@ -3,38 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ray_dda.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:51:47 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/15 12:13:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/18 02:00:33 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	get_side(t_math *math)
+{
+	int	wall_dir;
+
+	if (math->side == 0) // vertical wall
+	{
+		if (math->stepX > 0)
+			wall_dir = EAST;
+		else
+			wall_dir = WEST;
+	}
+	else // horizontal wall
+	{
+		if (math->stepY > 0)
+			wall_dir = SOUTH;
+		else
+			wall_dir = NORTH;
+	}
+	return (wall_dir);
+}
 
 void ray_dda(t_math *math, t_data *data)
 {
 	bool	hit;
 
 	hit = 0;
-	while(hit == 0)
+	while(hit == 0 && (math->map_x >= 0 && math->map_y >= 0)) // ver essa condicao (desnessaria)
+	{
+		if(math->sideDistX < math->sideDistY) // vai dar orientacao parede mudar depois
 		{
-			if(math->sideDistX < math->sideDistY)
-			{
-				math->sideDistX += math->deltaDistX;
-				math->map_x += math->stepX;
-				math->side = 0;
-			}
-			else
-			{
-				math->sideDistY += math->deltaDistY;
-				math->map_y += math->stepY;
-				math->side = 1;
-			}
-			//Check if ray has hit a wall
-			// printf("map x%d, mapy%d \n", mapX, mapY);
-			if(data->worldMap[math->map_x][math->map_y] > 0)
-				hit = 1;
+			math->sideDistX += math->deltaDistX;
+			math->map_x += math->stepX;
+			math->side = 0;
 		}
+		else
+		{
+			math->sideDistY += math->deltaDistY;
+			math->map_y += math->stepY;
+			math->side = 1;
+		}
+		if ((math->map_x >= 0 && math->map_y >= 0)) // ver essa condicao (desnessaria)
+		{
+			if(data->worldMap[math->map_x][math->map_y] > 0)
+			{
+				hit = 1;
+			}
+			math->wall_dir = get_side(math);
+		}
+	}
 
 }
