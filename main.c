@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/18 01:22:51 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:08:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,11 @@ static int mlx_data_init(t_data *data)
 	return (1);
 }
 
+void	import_textures()
+{
+	mlx_xpm_file_to_image();
+}
+
 int main(int argc, char *argv[])
 {
 	t_data	data = {0};
@@ -123,9 +128,15 @@ int main(int argc, char *argv[])
 	data.oldTime = 0; //time of previous frame
 	
 	bool i;
+	
 	i = (bool)mlx_data_init(&data);
 	if (i == false)
 		return (1);
+	
+	
+	import_textures();
+
+
 	create_image(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);
