@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/18 01:59:48 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/30 16:00:58 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,4 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 		color = dimColor(color); */
 	// printf("x;%d start;%d end;%d color;%d\n",x, drawStart, drawEnd, color_atoi(color));
 	draw_vertical_line(x, drawStart, drawEnd, color_atoi(color), data);
-	draw_vertical_line(x + 1, drawStart, drawEnd, color_atoi(color), data);
-	draw_vertical_line(x + 2, drawStart, drawEnd, color_atoi(color), data);
 }

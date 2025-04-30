@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:55:03 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/18 02:01:29 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:59:47 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	render_floor(t_math *math, t_data *data, int h)
 
 		int x = 0;
 
-		while (++x < data->img_w)
+		while (x < data->img_w)
 		{
 			// int cellX = (int)(floorX);
 			// int cellY = (int)(floorY);
@@ -55,6 +55,7 @@ void	render_floor(t_math *math, t_data *data, int h)
 
 			my_mlx_pixel_put(data, x, data->img_h - y - 1, color_atoi(color2)); // floor
 			my_mlx_pixel_put(data, x, y, color_atoi(color)); // ceiling
+			x++;
 		}
 		y++;
 	}
@@ -66,12 +67,13 @@ void	render_walls(t_math *math, t_data *data, int h)
 	int	x;
 
 	x = 0;
-	while (++x < data->img_w)
+	while (x < data->img_w)
 	{
 		init_math(data, math, x);
 		find_ray_angle(math, data);
 		ray_dda(math, data);
 		draw_column(data, math, x, h);
+		x++;
 	}
 }
 

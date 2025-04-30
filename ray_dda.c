@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:51:47 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/18 02:00:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:22:31 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_side(t_math *math)
 	if (math->side == 0) // vertical wall
 	{
 		if (math->stepX > 0)
-			wall_dir = EAST;
+			wall_dir = EAST; 
 		else
 			wall_dir = WEST;
 	}
@@ -38,7 +38,7 @@ void ray_dda(t_math *math, t_data *data)
 	bool	hit;
 
 	hit = 0;
-	while(hit == 0 && (math->map_x >= 0 && math->map_y >= 0)) // ver essa condicao (desnessaria)
+	while(hit == 0 && (math->map_x >= 0 && math->map_y >= 0)) // ver se essa condicao (desnessaria)
 	{
 		if(math->sideDistX < math->sideDistY) // vai dar orientacao parede mudar depois
 		{
@@ -52,7 +52,7 @@ void ray_dda(t_math *math, t_data *data)
 			math->map_y += math->stepY;
 			math->side = 1;
 		}
-		if ((math->map_x >= 0 && math->map_y >= 0)) // ver essa condicao (desnessaria)
+		if ((math->map_x >= 0 && math->map_y >= 0)) // ver se essa condicao (desnessaria)
 		{
 			if(data->worldMap[math->map_x][math->map_y] > 0)
 			{
@@ -61,5 +61,4 @@ void ray_dda(t_math *math, t_data *data)
 			math->wall_dir = get_side(math);
 		}
 	}
-
 }

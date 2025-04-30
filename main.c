@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/19 01:08:34 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:03:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	render(t_data *data)
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
 	create_image(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	import_textures(data);
 	display_fps(data);
 	return 0;
 }
@@ -90,9 +91,13 @@ static int mlx_data_init(t_data *data)
 	return (1);
 }
 
-void	import_textures()
+void	import_textures(t_data *data)
 {
-	mlx_xpm_file_to_image();
+	int height;
+	int width;
+	void *is_an_image;
+	is_an_image = mlx_xpm_file_to_image(data->mlx, "./textures/AnyConv.com__BRICK_1A.xpm", &width, &height);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, is_an_image, 50, 50);
 }
 
 int main(int argc, char *argv[])
@@ -134,7 +139,7 @@ int main(int argc, char *argv[])
 		return (1);
 	
 	
-	import_textures();
+	import_textures(&data);
 
 
 	create_image(&data);
