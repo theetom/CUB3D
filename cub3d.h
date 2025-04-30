@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/18 01:59:13 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/30 18:55:31 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "minilibx-linux/mlx.h"
+# include "Libft/libft.h"
 # include <stdio.h>
 # include <sys/time.h>
 # include <stdlib.h>
@@ -34,6 +35,21 @@ enum DIR{
 	SOUTH,
 	NORTH
 };
+
+typedef struct s_map
+{
+	char 	**char_map;
+	int		*int_map;
+	int		max_x;
+	int		max_y;
+	int		player_direction;
+	int		floor[2];
+	int		ceiling[2];
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+}			t_map;
 
 typedef struct s_math
 {
@@ -73,7 +89,7 @@ typedef struct s_data
 	double 		posX, posY;  //x and y start position
 	double 		dirX, dirY; //initial direction vector
 	double 		planeX, planeY; //the 2d raycaster version of camera plane
-  
+
 	double 		time; //time of current frame
 	double 		oldTime; //time of previous frame
 
@@ -104,5 +120,10 @@ void		draw_column(t_data *data, t_math *math, int x, int h);
 
 void		display_fps(t_data *data);
 double		getTicks(void);
+
+
+// parsing
+
+int parsing_map(int argc, char **argv, t_map *map);
 
 # endif
