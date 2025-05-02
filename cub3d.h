@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/02 17:15:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:23:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int			color_atoi(t_ColorRGB color);
 
 t_texture	import_texture(t_data *data, char *xpm_file_path);
 int	get_color_from_image(int x, int y, t_texture *texture);
+void	get_textures_from_xpm(t_data *data, char **textures);
 void	ft_hooks(t_data *data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		draw_vertical_line(int x, int start, int end, int color, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/02 17:23:10 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:28:55 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,13 +139,17 @@ int main(int argc, char *argv[])
 		return (1);
 	
 
-	data.texture = malloc(sizeof * data.texture * 100);
+	data.texture = malloc(sizeof(t_texture) * 4);
 
-	data.texture[0] = import_texture(&data, "./textures/AnyConv.com__BRICK_1A.xpm");
+	char *textures[] = {"./textures/AnyConv.com__BRICK_4A.xpm", \
+		"./textures/AnyConv.com__SAND_1A.xpm", \
+		"./textures/AnyConv.com__STEEL_1A.xpm", \
+		"./textures/AnyConv.com__TECH_4E.xpm", NULL};
+	
 
 	printf("%d\n", data.texture[0].t_height);
 
-
+	get_textures_from_xpm(&data, textures);
 	create_image(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);

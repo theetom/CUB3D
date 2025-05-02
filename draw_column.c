@@ -6,23 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/02 17:27:14 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:25:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-t_ColorRGB	get_color(t_math *math)
-{
-	if (math->wall_dir == 0)
-		return ((t_ColorRGB){255, 0, 0});
-	if (math->wall_dir == 1)
-		return ((t_ColorRGB){255, 0, 255});
-	if (math->wall_dir == 2)
-		return ((t_ColorRGB){255, 255, 255});
-	if (math->wall_dir == 3)
-		return ((t_ColorRGB){255, 255, 0});
-}
 
 void draw_column(t_data *data, t_math *math, int x, int h)
 {
@@ -46,7 +34,7 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 
 	// TEXTURE
 
-	int texNum = 0; // replace 0 math->wall_dir
+	int texNum = math->wall_dir; // replace 0 math->wall_dir
 
 	double wallX;
 	if (math->side == 0)
