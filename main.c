@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/30 15:03:53 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/02 17:23:10 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	render(t_data *data)
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
 	create_image(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
-	import_textures(data);
 	display_fps(data);
 	return 0;
 }
@@ -91,13 +90,14 @@ static int mlx_data_init(t_data *data)
 	return (1);
 }
 
-void	import_textures(t_data *data)
+t_texture	import_texture(t_data *data, char *xpm_file_path)
 {
-	int height;
-	int width;
-	void *is_an_image;
-	is_an_image = mlx_xpm_file_to_image(data->mlx, "./textures/AnyConv.com__BRICK_1A.xpm", &width, &height);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, is_an_image, 50, 50);
+	t_texture texture;
+
+	texture.t_img = mlx_xpm_file_to_image(data->mlx, xpm_file_path, \
+		&(texture.t_width), &(texture.t_height));
+	texture.addr = mlx_get_data_addr(texture.t_img, &(texture.bit_p_pixel), &(texture.size_line), &(texture.endian));
+	return (texture);
 }
 
 int main(int argc, char *argv[])
@@ -138,8 +138,12 @@ int main(int argc, char *argv[])
 	if (i == false)
 		return (1);
 	
-	
-	import_textures(&data);
+
+	data.texture = malloc(sizeof * data.texture * 100);
+
+	data.texture[0] = import_texture(&data, "./textures/AnyConv.com__BRICK_1A.xpm");
+
+	printf("%d\n", data.texture[0].t_height);
 
 
 	create_image(&data);

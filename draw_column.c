@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/30 16:00:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/02 17:27:14 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,56 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 	drawEnd = lineHeight / 2 + h / 2;
 	if(drawEnd >= h)
 		drawEnd = h - 1;
-	color = get_color(math);
+
+
+	// TEXTURE
+
+	int texNum = 0; // replace 0 math->wall_dir
+
+	double wallX;
+	if (math->side == 0)
+		wallX = data->posY + math->perpWallDist * math->ray_dir_y;
+	else
+		wallX = data->posX + math->perpWallDist * math->ray_dir_x;
+	wallX -= floor((wallX));
+
+	int texX = (int)(wallX * (double)(data->texture[texNum].t_width));
+	if(math->side == 0 && math->ray_dir_x > 0)
+		texX = (data->texture[0].t_width) - texX - 1;
+	if(math->side == 1 && math->ray_dir_y < 0)
+		texX = (data->texture[0].t_width) - texX - 1;
+
+
+	double step = 1.0 * (data->texture[texNum].t_height) / lineHeight;
+	double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
+
+	int y = drawStart;
+	while(y < drawEnd)
+      {
+        int texY = (int)texPos & (data->texture[texNum].t_height - 1);
+        texPos += step;
+        int color = get_color_from_image(texX, texY, &(data->texture[texNum]));
+		my_mlx_pixel_put(data, x, y, color);
+		y++;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// color = get_color(math);
 /* 	if (math->side == 1)
 		color = dimColor(color); */
 	// printf("x;%d start;%d end;%d color;%d\n",x, drawStart, drawEnd, color_atoi(color));
-	draw_vertical_line(x, drawStart, drawEnd, color_atoi(color), data);
+	// draw_vertical_line(x, drawStart, drawEnd, color_atoi(color), data);
 }
