@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:19:49 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/04 15:28:48 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/04 19:46:42 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int got_all_textures(t_map *map)
 	return (0);
 }
 
-static int	getting_textures(t_map *map, int fd)
+static int	getting_info(t_map *map, int fd)
 {
 	char *line;
 
@@ -33,19 +33,82 @@ static int	getting_textures(t_map *map, int fd)
 			return (1);
 		if (ft_strncmp (line, "\n", 1))
 			check_which_texture(map, line);
+		free(line);
+	}
+	return (0);
+}
+
+static void	alloc_map(t_map *map, char *line, int fd)
+{
+	int	x;
+	int y;
+
+	y = 0;
+	map->char_map = malloc(sizeof(char *) * 2);
+	map->char_map[0] = ft_strdup(line);
+	map->char_map[1] = 0;
+	while (line)
+	{
+		x = ft_strlen(line);
+		if (x > map->max_x)
+			map->max_x = x;
+		y++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	map->max_y = y;
+	map->max_x -= 1;
+}
+static int	get_rest_of_the_map(t_map *map, int fd2)
+{
+	int	i;
+	char	*line;
+	char **temp;
+
+	i = 0;
+	line = get_next_line(fd2);
+	while (ft_strcmp(line, map->char_map[0]))
+	{
+		free(line);
+		line = get_next_line(fd2);
+	}
+	free_char_array(map->char_map);
+	map->char_map = malloc(sizeof(char *) * (map->max_y + 1));
+	map->char_map[i] = line;
+	while (map->char_map[i])
+	{
+		if (!ft_strcmp(map->char_map[i], "\n"))
+			return (1);
+		map->char_map[++i] = get_next_line(fd2);
 	}
 	return (0);
 }
 
 int	check_file(t_map *map, char *path)
 {
-	int fd;
+	int 	fd;
+	int		fd2;
+	char 	*line;
+	int		i;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	if (getting_textures(map, fd))
+	fd2 = open(path, O_RDONLY);
+	if (fd2 == -1)
+		return (0);
+	if (getting_info(map, fd))
+		return (0);
+	line = get_next_line(fd);
+	while (!ft_strcmp(line, "\n"))
+	{
+		free (line);
+		line = get_next_line(fd);
+	}
+	alloc_map(map, line, fd);
+	if (get_rest_of_the_map(map, fd2))
 		return (0);
 	close(fd);
+	close(fd2);
 	return (1);
 }
