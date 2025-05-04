@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:54:22 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/09 16:17:36 by famendes         ###   ########.fr       */
+/*   Updated: 2025/05/04 14:49:59 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 # include <string.h>
 # include <stdio.h>
@@ -70,5 +75,6 @@ void		ft_lstdelone(t_list *lst, void (*del)(void*));
 void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char		*get_next_line(int fd);
 
 #endif

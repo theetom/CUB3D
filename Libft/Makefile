@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: famendes <famendes@student.42.fr>          +#+  +:+       +#+         #
+#    By: fabio <fabio@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 12:04:41 by toferrei          #+#    #+#              #
-#    Updated: 2025/02/09 16:17:33 by famendes         ###   ########.fr        #
+#    Updated: 2025/05/04 14:51:14 by fabio            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SOURCES = \
 	ft_atoi.c ft_calloc.c ft_strdup.c\
 	ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c\
 	ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c\
-	ft_putendl_fd.c ft_putnbr_fd.c
+	ft_putendl_fd.c ft_putnbr_fd.c get_next_line.c
 
 BSOURCES = \
 	ft_lstadd_front.c ft_lstnew.c ft_lstsize.c ft_lstlast.c\

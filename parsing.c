@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:12:57 by fabio             #+#    #+#             */
-/*   Updated: 2025/04/27 17:05:40 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/04 15:29:37 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int check_map(t_map *map, char *path)
 	while (path[i] && path[i] != '.')
 		i++;
 	if (ft_strcmp(path + i, ".cub"))
+		return (1);
+	if (!check_file(map, path))
 		return (1);
 	return (0);
 }

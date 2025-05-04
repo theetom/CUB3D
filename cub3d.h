@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/30 18:55:31 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/04 14:52:38 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,8 @@ double		getTicks(void);
 // parsing
 
 int parsing_map(int argc, char **argv, t_map *map);
+int	check_file(t_map *map, char *path);
+void	check_which_texture(t_map *map, char *str);
+void	free_char_array(char **strs);
 
 # endif
