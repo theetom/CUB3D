@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/02 18:28:55 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/03 17:42:05 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int mlx_data_init(t_data *data)
 	if ((data->mlx = mlx_init()) == NULL)
 		return (0);
 	mlx_get_screen_size(data->mlx, &data->img_w, &data->img_h);
-	data->img_w /= 4;
+	data->img_w /= 2;
 	data->img_h /= 2;
 	if ((data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, "My CUB3D!")) == NULL)
 		return (0);
