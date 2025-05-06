@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/06 15:17:48 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:10:11 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # define mapHeight 6
 
 enum DIR{
-	EAST,
-	WEST,
-	SOUTH,
-	NORTH
+	EAST = 1,
+	WEST = 2,
+	SOUTH = 3,
+	NORTH = 4,
 };
 
 typedef struct s_math
