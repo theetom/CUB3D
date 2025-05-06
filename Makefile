@@ -1,0 +1,1 @@
+gcc -g *.c -I/usr/include -Iminiliblibx-linux -O3 -Lminilibx-linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
