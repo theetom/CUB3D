@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_column.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/02 18:25:51 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:22:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 	double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
 
 	int y = drawStart;
-	while(y < drawEnd)
+	while(y <= drawEnd)
       {
         int texY = (int)texPos & (data->texture[texNum].t_height - 1);
         texPos += step;

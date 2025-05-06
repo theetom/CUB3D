@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/03 17:42:05 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:18:10 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,6 @@ static int mlx_data_init(t_data *data)
 	return (1);
 }
 
-t_texture	import_texture(t_data *data, char *xpm_file_path)
-{
-	t_texture texture;
-
-	texture.t_img = mlx_xpm_file_to_image(data->mlx, xpm_file_path, \
-		&(texture.t_width), &(texture.t_height));
-	texture.addr = mlx_get_data_addr(texture.t_img, &(texture.bit_p_pixel), &(texture.size_line), &(texture.endian));
-	return (texture);
-}
-
 int main(int argc, char *argv[])
 {
 	t_data	data = {0};
@@ -139,7 +129,7 @@ int main(int argc, char *argv[])
 		return (1);
 	
 
-	data.texture = malloc(sizeof(t_texture) * 4);
+	// data.texture = malloc(sizeof(t_texture) * 4);
 
 	char *textures[] = {"./textures/AnyConv.com__BRICK_4A.xpm", \
 		"./textures/AnyConv.com__SAND_1A.xpm", \
