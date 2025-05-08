@@ -3,20 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/06 15:18:10 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:13:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void minimap(t_data *data)
+{
+	double radius = 10000;
+	int center_x = 250;
+	int center_y = 250;
+	for (int x = -radius; x < radius ; x++)
+{
+    int hh = (int)sqrt(sqrt(radius) - x * x);
+    int rx = center_x + x;
+    int ph = center_y + hh;
+
+    for (int y = center_y-hh; y < ph; y++)
+    {
+		my_mlx_pixel_put(data, rx, y, color_atoi((t_ColorRGB){255, 255, 255}));
+		// canvas[rx][y] = 1;
+	}
+}
+}
 
 int	render(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
 	create_image(data);
+	minimap(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	display_fps(data);
 	return 0;
