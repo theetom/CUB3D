@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/06 15:18:10 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:17:10 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int delete_everything(t_data *data)
 }
 
 int	keypress(int k, t_data *data)
-{ 
+{
 	if (k == 0xff1b)
 		delete_everything(data);
 	if (k == 119) // frente
@@ -93,13 +93,13 @@ static int mlx_data_init(t_data *data)
 int main(int argc, char *argv[])
 {
 	t_data	data = {0};
+	t_map	map;
 
-	(void)argv;
-	(void)argc;
-
+	if (parsing_map(argc, argv, &map) == 1)
+		return (1);
 	int row0[] = {1,1,1,1,1,1,1,1,1,1,1,1};
-	int row1[] = {1,0,0,0,0,0,0,1,0,0,0,1};
-	int row2[] = {1,0,0,1,0,0,0,0,0,0,0,1};
+	int row1[] = {1,0,0,1,0,0,0,1,0,0,0,1};
+	int row2[] = {1,1,0,1,0,0,0,0,0,0,0,1};
 	int row3[] = {1,0,0,0,0,1,1,0,0,0,0,1};
 	int row4[] = {1,0,0,0,0,1,1,0,0,0,0,1};
 	int row5[] = {1,0,1,0,0,1,1,0,0,0,0,1};
@@ -109,8 +109,8 @@ int main(int argc, char *argv[])
 	int row9[] = {1,0,0,0,0,0,0,0,0,0,0,1};
 	int row10[] = {1,0,0,0,0,0,0,0,0,0,0,1};
 	int row11[] = {1,1,1,1,1,1,1,1,1,1,1,1};
-	
-	
+
+
 	int *worldMap[] = {row0, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11};
 
 	data.worldMap = worldMap;
@@ -118,10 +118,10 @@ int main(int argc, char *argv[])
 	data.posX = 4, data.posY = 3;  //x and y start position
 	data.dirX = -1, data.dirY = 0; //initial direction vector
 	data.planeX = 0, data.planeY = 0.66; //the 2d raycaster version of camera plane
-	
+
 	data.time = 0; //time of current frame
 	data.oldTime = 0; //time of previous frame
-	
+
 	bool i;
 	
 	i = (bool)mlx_data_init(&data);

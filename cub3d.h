@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/06 15:17:48 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:17:01 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "minilibx-linux/mlx.h"
+# include "Libft/libft.h"
 # include <stdio.h>
 # include <sys/time.h>
 # include <stdlib.h>
@@ -34,6 +35,24 @@ enum DIR{
 	SOUTH,
 	NORTH
 };
+
+typedef struct s_map
+{
+	char 	**char_map; //alloc
+	int		**int_map;	////alloc
+	int		max_x;
+	int		max_y;
+	char	player_direction;
+	float	p_x;
+	float	p_y;
+	int		floor[2];  //alloc
+	int		ceiling[2]; //alloc
+	char	*no; //alloc
+	char	*so; //alloc
+	char	*we; //alloc
+	char	*ea; //alloc
+	char	**textures; //alloc
+}			t_map;
 
 typedef struct s_math
 {
@@ -86,7 +105,7 @@ typedef struct s_data
 	double 		posX, posY;  //x and y start position
 	double 		dirX, dirY; //initial direction vector
 	double 		planeX, planeY; //the 2d raycaster version of camera plane
-  
+
 	double 		time; //time of current frame
 	double 		oldTime; //time of previous frame
 
@@ -119,5 +138,17 @@ void		draw_column(t_data *data, t_math *math, int x, int h);
 
 void		display_fps(t_data *data);
 double		getTicks(void);
+
+
+// parsing
+
+int 	parsing_map(int argc, char **argv, t_map *map);
+int		check_file(t_map *map, char *path);
+void	check_which_texture(t_map *map, char *str);
+void	free_char_array(char **strs);
+int		check_player_info(t_map *map);
+int		check_map_input(char **map);
+int 	check_if_closed(char **map);
+int 	copy_map_to_int(t_map *map);
 
 # endif
