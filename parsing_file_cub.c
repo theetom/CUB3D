@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:19:49 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/04 19:46:42 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/09 00:30:37 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 static int got_all_textures(t_map *map)
 {
-	if (map->no && map->so && map->ea && map->we
-		&& map->floor[2] >= 0 && map->ceiling[2] >= 0
-		&& map->floor[1] >= 0 && map->ceiling[1] >= 0
-		&& map->floor[0] >= 0 && map->ceiling[0] >= 0)
-		return (1);
-	return (0);
+	if (!map->no || !map->so || !map->ea || !map->we)
+		return (0);
+	if ((map->ceiling[0] < 0 || map->ceiling[0] > 255) ||
+		(map->ceiling[1] < 0 || map->ceiling[1] > 255) ||
+		(map->ceiling[2] < 0 || map->ceiling[2] > 255))
+		return (0);
+	if ((map->floor[0] < 0 || map->floor[0] > 255) ||
+		(map->floor[1] < 0 || map->floor[1] > 255) ||
+		(map->floor[2] < 0 || map->floor[2] > 255))
+		return (0);
+	return (1);
 }
 
 static int	getting_info(t_map *map, int fd)
@@ -35,6 +40,10 @@ static int	getting_info(t_map *map, int fd)
 			check_which_texture(map, line);
 		free(line);
 	}
+	map->textures[0] = map->no;
+	map->textures[1] = map->so;
+	map->textures[2] = map->we;
+	map->textures[3] = map->ea;
 	return (0);
 }
 
@@ -45,6 +54,8 @@ static void	alloc_map(t_map *map, char *line, int fd)
 
 	y = 0;
 	map->char_map = malloc(sizeof(char *) * 2);
+	if (!map->char_map)
+		return;
 	map->char_map[0] = ft_strdup(line);
 	map->char_map[1] = 0;
 	while (line)

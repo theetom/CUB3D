@@ -6,11 +6,17 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:12:57 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/04 15:29:37 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/09 01:01:43 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	parsing_error_msg(char *msg)
+{
+	printf("%s\n", msg);
+	return (1);
+}
 
 static int check_map(t_map *map, char *path)
 {
@@ -22,9 +28,17 @@ static int check_map(t_map *map, char *path)
 	while (path[i] && path[i] != '.')
 		i++;
 	if (ft_strcmp(path + i, ".cub"))
-		return (1);
+		return (parsing_error_msg("Not a .cub file"));
 	if (!check_file(map, path))
-		return (1);
+		return (parsing_error_msg("Invalid inputs in textures"));
+	if (!check_player_info(map))
+		return (parsing_error_msg("No player or multiple players found"));
+	if (!check_map_input(map->char_map))
+		return (parsing_error_msg("Invalid map inputs"));
+	if (!check_if_closed(map->char_map))
+		return (parsing_error_msg("Map not closed or invalid 0"));
+	if (!copy_map_to_int(map))
+		return (parsing_error_msg("Failed copying INT map"));
 	return (0);
 }
 
@@ -35,6 +49,8 @@ static void init_map(t_map *map)
 	map->max_x = 0;
 	map->max_y = 0;
 	map->player_direction = 0;
+	map->p_x = 0;
+	map->p_y = 0;
 	map->floor[0] = -1;
 	map->floor[1] = -1;
 	map->floor[2] = -1;
@@ -45,6 +61,8 @@ static void init_map(t_map *map)
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
+	map->textures = malloc(sizeof(char *) * 5);
+	map->textures[4] = 0;
 }
 
 int parsing_map(int argc, char **argv, t_map *map)

@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/04 14:52:38 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/09 01:01:19 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,20 @@ enum DIR{
 
 typedef struct s_map
 {
-	char 	**char_map;
-	int		*int_map;
+	char 	**char_map; //alloc
+	int		**int_map;	////alloc
 	int		max_x;
 	int		max_y;
-	int		player_direction;
-	int		floor[2];
-	int		ceiling[2];
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
+	char	player_direction;
+	float	p_x;
+	float	p_y;
+	int		floor[2];  //alloc
+	int		ceiling[2]; //alloc
+	char	*no; //alloc
+	char	*so; //alloc
+	char	*we; //alloc
+	char	*ea; //alloc
+	char	**textures; //alloc
 }			t_map;
 
 typedef struct s_math
@@ -124,9 +127,13 @@ double		getTicks(void);
 
 // parsing
 
-int parsing_map(int argc, char **argv, t_map *map);
-int	check_file(t_map *map, char *path);
+int 	parsing_map(int argc, char **argv, t_map *map);
+int		check_file(t_map *map, char *path);
 void	check_which_texture(t_map *map, char *str);
 void	free_char_array(char **strs);
+int		check_player_info(t_map *map);
+int		check_map_input(char **map);
+int 	check_if_closed(char **map);
+int 	copy_map_to_int(t_map *map);
 
 # endif
