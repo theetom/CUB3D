@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:23:45 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/09 19:11:12 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:15:36 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static void	get_RGB(t_map *map, char *str)
 {
 	char **numbers;
 
-	printf("ola");
 	numbers = ft_split(str, ',');
 	if (!numbers)
 		return ;
@@ -70,13 +69,13 @@ static void	get_RGB(t_map *map, char *str)
 	}
 	if (ft_strncmp(str, "F ", 2) == 0)
 	{
-		map->floor[0] = ft_atoi(numbers[0] + 1);
+		map->floor[0] = ft_atoi(numbers[0] + 2);
 		map->floor[1] = ft_atoi(numbers[1]);
 		map->floor[2] = ft_atoi(numbers[2]);
 	}
 	else if (ft_strncmp(str, "C ", 2) == 0)
 	{
-		map->ceiling[0] = ft_atoi(numbers[0] + 1);
+		map->ceiling[0] = ft_atoi(numbers[0] + 2);
 		map->ceiling[1] = ft_atoi(numbers[1]);
 		map->ceiling[2] = ft_atoi(numbers[2]);
 	}
