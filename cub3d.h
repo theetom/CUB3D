@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 15:21:08 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:54:40 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_texture
 typedef struct s_data
 {
 	t_texture	texture[4];
+	t_map		*map;
 	void		*img;
 	void		*mlx;
 	void		*mlx_win;
@@ -99,16 +100,12 @@ typedef struct s_data
 	int			endian;
 	double		moveSpeed;
 	double		rotSpeed;
-
 	double 		posX, posY;  //x and y start position
 	double 		dirX, dirY; //initial direction vector
 	double 		planeX, planeY; //the 2d raycaster version of camera plane
-
 	double 		time; //time of current frame
 	double 		oldTime; //time of previous frame
-
 	int			**worldMap;
-
 }	t_data;
 
 typedef struct s_ColorRGB

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_dda.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:51:47 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/29 15:22:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:27:24 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void ray_dda(t_math *math, t_data *data)
 		}
 		if ((math->map_x >= 0 && math->map_y >= 0)) // ver se essa condicao (desnessaria)
 		{
-			if(data->worldMap[math->map_x][math->map_y] > 0)
+			// printf("%d %d\n", math->map_x, math->map_y);
+			// printf("%d\n", data->worldMap[math->map_y][math->map_x]);
+			if(data->worldMap[math->map_y][math->map_x] > 0)
 			{
 				hit = 1;
 			}

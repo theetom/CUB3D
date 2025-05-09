@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 21:52:24 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/09 01:01:00 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/09 16:34:19 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,17 +111,21 @@ int copy_map_to_int(t_map *map)
 	while (map->char_map[y])
 	{
 		x = 0;
-		map->int_map[y] = ft_calloc(ft_strlen(map->char_map[y]) - 1, sizeof(int));
+		map->int_map[y] = ft_calloc(ft_strlen(map->char_map[y]), sizeof(int));
 		if (!map->int_map[y])
 			return (0);
 		while (map->char_map[y][x] && map->char_map[y][x] != '\n')
 		{
 			if (map->char_map[y][x] == '0' || map->char_map[y][x] == '1')
+			{
 				map->int_map[y][x] = map->char_map[y][x] - '0';
+			}
 			else
-			map->int_map[y][x] = 2;
+				map->int_map[y][x] = 2;
+			// printf("%d", map->int_map[y][x]);
 			x++;
 		}
+		printf("\n");
 		y++;
 	}
 	return (1);

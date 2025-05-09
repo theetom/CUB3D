@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 15:22:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:56:01 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ int	keypress(int k, t_data *data)
 		delete_everything(data);
 	if (k == 119) // frente
 	{
-		if(data->worldMap[(int)(data->posX + data->dirX)][(int)data->posY] == false)
+		if(data->worldMap[(int)data->posY][(int)(data->posX + data->dirX)] == false)
 			data->posX += data->dirX * data->moveSpeed;
-		if(data->worldMap[(int)(data->posX)][(int)(data->posY + data->dirY)] == false)
+		if(data->worldMap[(int)(data->posY + data->dirY)][(int)(data->posX)] == false)
 			data->posY += data->dirY * data->moveSpeed;
 	}
 	if (k == 115) // tras
 	{
-		if(data->worldMap[(int)(data->posX - data->dirX)][(int)data->posY] == false)
+		if(data->worldMap[(int)data->posY][(int)(data->posX - data->dirX)] == false)
 			data->posX -= data->dirX * data->moveSpeed;
-		if(data->worldMap[(int)(data->posX)][(int)(data->posY - data->dirY)] == false)
+		if(data->worldMap[(int)(data->posY - data->dirY)][(int)(data->posX)] == false)
 			data->posY -= data->dirY * data->moveSpeed;
 	}
-	if (k == 100) // direita
+	if (k == 97) // direita
 	{
 		double oldDirX = data->dirX;
 		data->dirX = data->dirX * cos(-data->rotSpeed) - data->dirY * sin(-data->rotSpeed);
@@ -58,7 +58,7 @@ int	keypress(int k, t_data *data)
       data->planeX = data->planeX * cos(-data->rotSpeed) - data->planeY * sin(-data->rotSpeed);
       data->planeY = oldPlaneX * sin(-data->rotSpeed) + data->planeY * cos(-data->rotSpeed);
 	}
-	if (k == 97) // esquerda
+	if (k == 100) // esquerda
 	{
 		double oldDirX = data->dirX;
 		data->dirX = data->dirX * cos(data->rotSpeed) - data->dirY * sin(data->rotSpeed);
@@ -90,42 +90,45 @@ static int mlx_data_init(t_data *data)
 	return (1);
 }
 
+int convert_orientation(t_data *data, char pos)
+{
+	data->dirX = 0;
+	data->dirY = 0;
+	if (pos == 'N')
+		data->dirX = 1;
+	if (pos == 'S')
+		data->dirX = -1;
+	if (pos == 'W')
+		data->dirY = -1;
+	if (pos == 'E')
+		data->dirY = 1;
+}
+
 int main(int argc, char *argv[])
 {
-	t_data	data = {0};
+	t_data	data;
 	t_map	map;
+	bool	i;
+	data.map = &map;
 
 	if (parsing_map(argc, argv, &map) == 1)
 		return (1);
+	data.worldMap = map.int_map;
 
-	data.worldMap = worldMap;
-
-	data.posX = 4, data.posY = 3;  //x and y start position
-	data.dirX = -1, data.dirY = 0; //initial direction vector
+	data.posX = map.p_x;
+	data.posY = map.p_y;  //x and y start position
+	printf("%f %f\n", map.p_x, map.p_y);
+	convert_orientation(&data, map.player_direction);
 	data.planeX = 0, data.planeY = 0.66; //the 2d raycaster version of camera plane
 
 	data.time = 0; //time of current frame
 	data.oldTime = 0; //time of previous frame
-
-	bool i;
-	
-	i = (bool)mlx_data_init(&data);
+	i = ((bool)mlx_data_init(&data));
 	if (i == false)
 		return (1);
-	
-
-	// data.texture = malloc(sizeof(t_texture) * 4);
-
-	char *textures[] = {"./textures/AnyConv.com__BRICK_4A.xpm", \
-		"./textures/AnyConv.com__SAND_1A.xpm", \
-		"./textures/AnyConv.com__STEEL_1A.xpm", \
-		"./textures/AnyConv.com__TECH_4E.xpm", NULL};
-	
-
-	printf("%d\n", data.texture[0].t_height);
-
-	get_textures_from_xpm(&data, textures);
+	get_textures_from_xpm(&data, map.textures);
 	create_image(&data);
+	printf("olaaaaa\n");
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_loop(data.mlx);

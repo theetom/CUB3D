@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:55:03 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 00:52:14 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:57:07 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ const t_ColorRGB RGB_Blue   = {0, 0, 255};
 const t_ColorRGB RGB_White  = {255, 255, 255};
 const t_ColorRGB RGB_Yellow = {255, 255, 0};
 
-typedef struct s_floor
+/* typedef struct s_floor
 {
 	float rayDirX0;
 	float rayDirY0;
@@ -33,8 +33,8 @@ typedef struct s_floor
 	float floorX;
 	float floorY;
 } t_floor;
-
-void	render_floor(t_data *data, int h)
+ */
+/* void	render_floor(t_data *data, int h)
 {
 	t_floor floor;
 	int	y;
@@ -75,7 +75,7 @@ void	render_floor(t_data *data, int h)
 		}
 		y++;
 	}
-}
+} */
 
 void	render_walls(t_data *data, int h)
 {
@@ -97,7 +97,7 @@ int create_image(t_data *data)
 {
 	int h = (data->img_h);
 
-	render_floor(data, h);
+	// render_floor(data, h);
 	render_walls(data, h);
  
 	return (0);

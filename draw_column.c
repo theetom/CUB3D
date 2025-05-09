@@ -6,11 +6,20 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/06 15:22:51 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:58:11 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/* void	draw_ceiling(t_data *data, int drawstart, int y, int x)
+{
+	while (y < drawstart)
+	{
+		
+		y++;
+	}
+} */
 
 void draw_column(t_data *data, t_math *math, int x, int h)
 {
@@ -53,7 +62,9 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 	double step = 1.0 * (data->texture[texNum].t_height) / lineHeight;
 	double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
 
-	int y = drawStart;
+	int y = 0;
+	// draw_ceiling(drawStart, &y);
+	y = drawStart;
 	while(y <= drawEnd)
       {
         int texY = (int)texPos & (data->texture[texNum].t_height - 1);

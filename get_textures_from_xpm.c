@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 18:03:22 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/06 14:07:22 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:05:31 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@ t_texture	import_texture(t_data *data, char *xpm_file_path)
 {
 	t_texture texture;
 
-	texture.t_img = mlx_xpm_file_to_image(data->mlx, xpm_file_path, \
-		&(texture.t_width), &(texture.t_height));
-	texture.addr = mlx_get_data_addr(texture.t_img, &(texture.bit_p_pixel), &(texture.size_line), &(texture.endian));
+	texture.t_img = mlx_xpm_file_to_image(data->mlx, \
+					xpm_file_path, \
+					&(texture.t_width), \
+					&(texture.t_height));
+	texture.addr = mlx_get_data_addr(texture.t_img, \
+					&(texture.bit_p_pixel), \
+					&(texture.size_line), \
+					&(texture.endian));
 	return (texture);
 }
 
@@ -26,17 +31,7 @@ void	get_textures_from_xpm(t_data *data, char **textures)
 {
 	int i;
 
+	i = 0;
 	while(textures[i])
-	{
-		if (textures[i][0] != '\0')
-		{
-			data->texture[i] = import_texture(data, textures[i]);
-		}
-		else
-		{
-
-			//give default texture
-		}
-		i++;
-	}
+		data->texture[i++] = import_texture(data, textures[i]);
 }
