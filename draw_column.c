@@ -6,20 +6,20 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 17:58:11 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:59:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* void	draw_ceiling(t_data *data, int drawstart, int y, int x)
+void	draw_ceiling(t_data *data, int end, int *y, int x, int color)
 {
-	while (y < drawstart)
+	while (*y < end)
 	{
-		
-		y++;
+		my_mlx_pixel_put(data, x, *y, color);
+		(*y)++;
 	}
-} */
+}
 
 void draw_column(t_data *data, t_math *math, int x, int h)
 {
@@ -32,7 +32,7 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 		math->perpWallDist = (math->sideDistX - math->deltaDistX);
 	else
 		math->perpWallDist = (math->sideDistY - math->deltaDistY);
-	lineHeight = (int)( h / math->perpWallDist) * 0.75;
+	lineHeight = (int)( h / math->perpWallDist);// * 0.75;
 	drawStart = -lineHeight / 2 + h / 2;
 	if(drawStart < 0)
 		drawStart = 0;
@@ -63,30 +63,22 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 	double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
 
 	int y = 0;
-	// draw_ceiling(drawStart, &y);
+	draw_ceiling(data, drawStart, &y, x, \
+						color_arr_int(data->map->floor[0],\
+							data->map->floor[1],\
+							data->map->floor[2]));
 	y = drawStart;
 	while(y <= drawEnd)
-      {
-        int texY = (int)texPos & (data->texture[texNum].t_height - 1);
+    {
+		int texY = (int)texPos & (data->texture[texNum].t_height - 1);
         texPos += step;
         int color = get_color_from_image(texX, texY, &(data->texture[texNum]));
 		my_mlx_pixel_put(data, x, y, color);
 		y++;
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+	draw_ceiling(data, data->img_h, &y, x, color_arr_int(data->map->ceiling[0],\
+							data->map->ceiling[1],\
+							data->map->ceiling[2]));
 
 	// color = get_color(math);
 /* 	if (math->side == 1)

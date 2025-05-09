@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 17:54:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:33:32 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ t_ColorRGB	dimColor(t_ColorRGB color);
 int			color_atoi(t_ColorRGB color);
 
 t_texture	import_texture(t_data *data, char *xpm_file_path);
-int	get_color_from_image(int x, int y, t_texture *texture);
-void	get_textures_from_xpm(t_data *data, char **textures);
-void	ft_hooks(t_data *data);
+int			get_color_from_image(int x, int y, t_texture *texture);
+void		get_textures_from_xpm(t_data *data, char **textures);
+void		ft_hooks(t_data *data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		draw_vertical_line(int x, int start, int end, int color, t_data *data);
 int			create_image(t_data *data);
@@ -127,6 +127,7 @@ void		ray_dda(t_math *math, t_data *data);
 void		init_math(t_data *data, t_math *math, int x);
 void		find_ray_angle(t_math *math, t_data *data);
 void		draw_column(t_data *data, t_math *math, int x, int h);
+int			color_arr_int(int a, int b, int c);
 
 
 //	TIME

@@ -3,8 +3,8 @@ SO ./textures/AnyConv.com__SAND_1A.xpm
 WE ./textures/AnyConv.com__STEEL_1A.xpm
 EA ./textures/AnyConv.com__TECH_4E.xpm
 
-F 220,100,0
-C 225,30,0
+F                1,2,3
+C             253,254,255
 
         1111111111111111111111111
         1000000000110000000000001

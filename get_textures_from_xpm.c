@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 18:03:22 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 18:05:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:13:22 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,10 @@ void	get_textures_from_xpm(t_data *data, char **textures)
 
 	i = 0;
 	while(textures[i])
-		data->texture[i++] = import_texture(data, textures[i]);
+	{
+		data->texture[i] = import_texture(data, textures[i]);
+		free(textures[i++]);
+	}
+	free(textures[i]);
+	free (textures);
 }
