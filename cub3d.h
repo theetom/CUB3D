@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 15:17:01 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:21:08 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # include <X11/keysym.h>
 
 # define _OPEN_SYS_ITOA_EXT
-# define mapWidth 6
-# define mapHeight 6
 
 enum DIR{
 	EAST,
