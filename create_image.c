@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:55:03 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/30 15:59:47 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/09 00:52:14 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,43 @@ const t_ColorRGB RGB_Blue   = {0, 0, 255};
 const t_ColorRGB RGB_White  = {255, 255, 255};
 const t_ColorRGB RGB_Yellow = {255, 255, 0};
 
-void	render_floor(t_math *math, t_data *data, int h)
+typedef struct s_floor
 {
+	float rayDirX0;
+	float rayDirY0;
+	float rayDirX1;
+	float rayDirY1;
+	int p;
+	float posZ;
+	float rowDistance;
+	float floorStepX;
+	float floorStepY;
+	float floorX;
+	float floorY;
+} t_floor;
+
+void	render_floor(t_data *data, int h)
+{
+	t_floor floor;
 	int	y;
 
 	y = 0;
-	(void)math;
 	t_ColorRGB color = RGB_Green;
-	t_ColorRGB color2 = RGB_Blue; 
+	t_ColorRGB color2 = RGB_Blue;
+
 	while (y < h)
 	{
-		float rayDirX0 = data->dirX - data->planeX;
-		float rayDirY0 = data->dirY - data->planeY;
-		float rayDirX1 = data->dirX + data->planeX;
-		float rayDirY1 = data->dirY + data->planeY;
-		int p = y - data->img_h / 2;
-		float posZ = 0.5 * data->img_h;
-		float rowDistance = posZ / p;
-		float floorStepX = rowDistance * (rayDirX1 - rayDirX0) / data->img_w;
-		float floorStepY = rowDistance * (rayDirY1 - rayDirY0) / data->img_w;
-		float floorX = data->posX + rowDistance * rayDirX0;
-		float floorY = data->posY + rowDistance * rayDirY0;
+		floor.rayDirX0 = data->dirX - data->planeX;
+		floor.rayDirY0 = data->dirY - data->planeY;
+		floor.rayDirX1 = data->dirX + data->planeX;
+		floor.rayDirY1 = data->dirY + data->planeY;
+		floor.p = y - data->img_h / 2;
+		floor.posZ = 0.5 * data->img_h;
+		floor.rowDistance = floor.posZ / floor.p;
+		floor.floorStepX = floor.rowDistance * (floor.rayDirX1 - floor.rayDirX0) / data->img_w;
+		floor.floorStepY = floor.rowDistance * (floor.rayDirY1 - floor.rayDirY0) / data->img_w;
+		floor.floorX = data->posX + floor.rowDistance * floor.rayDirX0;
+		floor.floorY = data->posY + floor.rowDistance * floor.rayDirY0;
 
 		int x = 0;
 
@@ -50,10 +66,10 @@ void	render_floor(t_math *math, t_data *data, int h)
 			// int tx = (int)(texWidth * (floorX - cellX)) & (texWidth - 1);
 			// int ty = (int)(texHeight * (floorY - cellY)) & (texHeight - 1);
 
-			floorX += floorStepX;
-			floorY += floorStepY;
+			floor.floorX += floor.floorStepX;
+			floor.floorY += floor.floorStepY;
 
-			my_mlx_pixel_put(data, x, data->img_h - y - 1, color_atoi(color2)); // floor
+			my_mlx_pixel_put(data, x, h - y - 1, color_atoi(color2)); // floor
 			my_mlx_pixel_put(data, x, y, color_atoi(color)); // ceiling
 			x++;
 		}
@@ -61,29 +77,28 @@ void	render_floor(t_math *math, t_data *data, int h)
 	}
 }
 
-void	render_walls(t_math *math, t_data *data, int h)
+void	render_walls(t_data *data, int h)
 {
-
+	t_math math;
 	int	x;
 
 	x = 0;
 	while (x < data->img_w)
 	{
-		init_math(data, math, x);
-		find_ray_angle(math, data);
-		ray_dda(math, data);
-		draw_column(data, math, x, h);
+		init_math(data, &math, x);
+		find_ray_angle(&math, data);
+		ray_dda(&math, data);
+		draw_column(data, &math, x, h);
 		x++;
 	}
 }
 
 int create_image(t_data *data)
 {
-	t_math	math;
-	int h = data->img_h;
+	int h = (data->img_h);
 
-	render_floor(&math, data, h);
-	render_walls(&math, data, h);
+	render_floor(data, h);
+	render_walls(data, h);
  
 	return (0);
 }
