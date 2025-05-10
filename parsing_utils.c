@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 21:52:24 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/10 14:44:28 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/10 14:47:25 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,8 @@ int copy_map_to_int(t_map *map)
 			}
 			else
 				map->int_map[y][x] = 2;
-			// printf("%d", map->int_map[y][x]);
 			x++;
 		}
-		printf("\n");
 		y++;
 	}
 	return (1);
