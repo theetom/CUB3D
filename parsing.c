@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:12:57 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/09 01:01:43 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/10 14:21:04 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int check_map(t_map *map, char *path)
 	if (!check_map_input(map->char_map))
 		return (parsing_error_msg("Invalid map inputs"));
 	if (!check_if_closed(map->char_map))
-		return (parsing_error_msg("Map not closed or invalid 0"));
+		return (parsing_error_msg("Map not closed or invalid '0'"));
 	if (!copy_map_to_int(map))
 		return (parsing_error_msg("Failed copying INT map"));
 	return (0);
@@ -65,6 +65,7 @@ static void init_map(t_map *map)
 	map->textures[4] = 0;
 }
 
+
 int parsing_map(int argc, char **argv, t_map *map)
 {
 	if (argc != 2)
@@ -75,6 +76,8 @@ int parsing_map(int argc, char **argv, t_map *map)
 	init_map(map);
 	if (check_map(map, argv[1]) == 1)
 	{
+		clean_map(map);
+		clean_textures(map);
 		printf("Error in parsing\n");
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:19:49 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/09 00:30:37 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/10 14:23:32 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,11 @@ static int	get_rest_of_the_map(t_map *map, int fd2)
 	while (map->char_map[i])
 	{
 		if (!ft_strcmp(map->char_map[i], "\n"))
+		{
+			free(map->char_map[i]);
+			map->char_map[i] = 0;
 			return (1);
+		}
 		map->char_map[++i] = get_next_line(fd2);
 	}
 	return (0);

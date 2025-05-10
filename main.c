@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 18:19:24 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:36:43 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@ int	render(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	display_fps(data);
 	return 0;
-}
-
-int delete_everything(t_data *data)
-{
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	
-	exit(0);
 }
 
 int	keypress(int k, t_data *data)
@@ -118,7 +108,6 @@ int main(int argc, char *argv[])
 
 	data.posX = map.p_x;
 	data.posY = map.p_y;  //x and y start position
-	printf("%f %f\n", map.p_x, map.p_y);
 	convert_orientation(&data, map.player_direction);
 	data.planeX = 0, data.planeY = 0.66; //the 2d raycaster version of camera plane
 
@@ -129,7 +118,6 @@ int main(int argc, char *argv[])
 		return (1);
 	get_textures_from_xpm(&data, map.textures);
 	create_image(&data);
-	printf("olaaaaa\n");
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_loop(data.mlx);

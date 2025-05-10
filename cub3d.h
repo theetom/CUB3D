@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 18:33:32 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:42:35 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_map
 	char	player_direction;
 	float	p_x;
 	float	p_y;
-	int		floor[2];  //alloc
-	int		ceiling[2]; //alloc
+	int		floor[3];
+	int		ceiling[3];
 	char	*no; //alloc
 	char	*so; //alloc
 	char	*we; //alloc
@@ -146,5 +146,10 @@ int		check_player_info(t_map *map);
 int		check_map_input(char **map);
 int 	check_if_closed(char **map);
 int 	copy_map_to_int(t_map *map);
+
+// clean
+void	clean_textures(t_map *map);
+void	clean_map(t_map *map);
+int		delete_everything(t_data *data);
 
 # endif
