@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:28:50 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/10 14:20:45 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/12 12:47:06 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	clean_map(t_map *map)
 
 int	delete_everything(t_data *data)
 {
+	mlx_do_key_autorepeaton(data->mlx);
 	clean_map(data->map);
 	mlx_destroy_image(data->mlx, data->texture[0].t_img);
 	mlx_destroy_image(data->mlx, data->texture[1].t_img);

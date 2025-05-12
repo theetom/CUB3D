@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:49:34 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/06 14:35:52 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/12 15:58:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,9 @@ void	display_fps(t_data *data) /* put after put iamge to window because of mlx s
     mlx_string_put(data->mlx, data->mlx_win, 10, 40, 0x00FFFFFF, speed_text);
 	sprintf(ptr, "dir x : %f dir y : %f", data->dirX, data->dirY);
 	mlx_string_put(data->mlx, data->mlx_win, 10, 60, 0x00FFFFFF, ptr);
-/* 	while (1 / frameTime > 30)
+	/* while (1 / frameTime > 30)
 	{
 		data->time = getTicks();
 		frameTime = (data->time - data->oldTime) / 1000.0;
-	} */	while (1 / frameTime > 30)
-	{
-		data->time = getTicks();
-		frameTime = (data->time - data->oldTime) / 1000.0;
-	}
+	} */
 }
