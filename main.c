@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/10 13:36:43 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/12 12:30:26 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	keypress(int k, t_data *data)
 		if(data->worldMap[(int)(data->posY - data->dirY)][(int)(data->posX)] == false)
 			data->posY -= data->dirY * data->moveSpeed;
 	}
-	if (k == 97) // direita
+	if (k == 100) // direita
 	{
 		double oldDirX = data->dirX;
 		data->dirX = data->dirX * cos(-data->rotSpeed) - data->dirY * sin(-data->rotSpeed);
@@ -49,7 +49,7 @@ int	keypress(int k, t_data *data)
       data->planeX = data->planeX * cos(-data->rotSpeed) - data->planeY * sin(-data->rotSpeed);
       data->planeY = oldPlaneX * sin(-data->rotSpeed) + data->planeY * cos(-data->rotSpeed);
 	}
-	if (k == 100) // esquerda
+	if (k == 97) // esquerda
 	{
 		double oldDirX = data->dirX;
 		data->dirX = data->dirX * cos(data->rotSpeed) - data->dirY * sin(data->rotSpeed);
