@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 21:52:24 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/10 14:47:25 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/12 22:54:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	fetch_player_direction(t_map *map, int y, int x)
 {
-	map->p_x = x + 0,5;
+	map->p_x = x + 0.5;
 	map->p_y = y + 0.5;
 	map->player_direction = map->char_map[y][x];
 	map->char_map[y][x] = '0';
@@ -22,9 +22,9 @@ static int	fetch_player_direction(t_map *map, int y, int x)
 
 int	check_player_info(t_map *map)
 {
-	int	i;
-	int	j;
-	char **temp;
+	int		i;
+	int		j;
+	char	**temp;
 
 	i = 0;
 	temp = map->char_map;
@@ -62,7 +62,7 @@ int	check_map_input(char **map)
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' &&
 				map[i][j] != ' ' && map[i][j] != '\n')
-					return (0);
+				return (0);
 			j++;
 		}
 		i++;
@@ -70,10 +70,10 @@ int	check_map_input(char **map)
 	return (1);
 }
 
-int check_if_closed(char **map)
+int	check_if_closed(char **map)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = -1;
 	while (map[++y])
@@ -83,10 +83,10 @@ int check_if_closed(char **map)
 		{
 			if (map[y][x] == '0')
 			{
-				if (!map[y + 1]|| x >= (int)ft_strlen(map[y + 1]) ||
-					 map[y + 1][x] == ' ' || map[y + 1][x] == '\n')
+				if (!map[y + 1] || x >= (int)ft_strlen(map[y + 1])
+					|| map[y + 1][x] == ' ' || map[y + 1][x] == '\n')
 					return (0);
-				if (y == 0  || !map[y - 1] || map[y - 1][x] == ' ')
+				if (y == 0 || !map[y - 1] || map[y - 1][x] == ' ')
 					return (0);
 				if (!map[y][x + 1] || map[y][x + 1] == ' ')
 					return (0);
@@ -99,7 +99,7 @@ int check_if_closed(char **map)
 	return (1);
 }
 
-int copy_map_to_int(t_map *map)
+int	copy_map_to_int(t_map *map)
 {
 	int	x;
 	int	y;
@@ -117,9 +117,7 @@ int copy_map_to_int(t_map *map)
 		while (map->char_map[y][x] && map->char_map[y][x] != '\n')
 		{
 			if (map->char_map[y][x] == '0' || map->char_map[y][x] == '1')
-			{
 				map->int_map[y][x] = map->char_map[y][x] - '0';
-			}
 			else
 				map->int_map[y][x] = 2;
 			x++;

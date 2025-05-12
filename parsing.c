@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:12:57 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/10 14:21:04 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/12 22:47:46 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	parsing_error_msg(char *msg)
 	return (1);
 }
 
-static int check_map(t_map *map, char *path)
+static int	check_map(t_map *map, char *path)
 {
-	int i;
+	int	i;
 
 	if (!path)
 		return (1);
@@ -42,7 +42,7 @@ static int check_map(t_map *map, char *path)
 	return (0);
 }
 
-static void init_map(t_map *map)
+static void	init_map(t_map *map)
 {
 	map->char_map = NULL;
 	map->int_map = NULL;
@@ -65,8 +65,7 @@ static void init_map(t_map *map)
 	map->textures[4] = 0;
 }
 
-
-int parsing_map(int argc, char **argv, t_map *map)
+int	parsing_map(int argc, char **argv, t_map *map)
 {
 	if (argc != 2)
 	{

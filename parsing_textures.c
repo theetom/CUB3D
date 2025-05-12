@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:23:45 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/10 13:43:35 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/12 22:56:24 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static char	*check_spaces(char * str)
+static char	*check_spaces(char *str)
 {
 	while (*str == ' ')
 		*str++;
@@ -24,17 +24,17 @@ void	free_char_array(char **strs)
 	int	i;
 
 	if (!strs)
-		return;
+		return ;
 	i = 0;
 	while (strs[i])
 		free(strs[i++]);
 	free(strs);
 }
 
-static int check_if_valid_input(char **numbers)
+static int	check_if_valid_input(char **numbers)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (numbers[i])
@@ -57,9 +57,9 @@ static int check_if_valid_input(char **numbers)
 	return (0);
 }
 
-static void	get_RGB(t_map *map, char *str)
+static void	get_rgb(t_map *map, char *str)
 {
-	char **numbers;
+	char	**numbers;
 
 	numbers = ft_split(str, ',');
 	if (!numbers)
@@ -109,5 +109,5 @@ void	check_which_texture(t_map *map, char *str)
 		map->ea = check_spaces(map->ea);
 	}
 	else if (ft_strncmp(str, "C ", 2) == 0 || ft_strncmp(str, "F ", 2) == 0)
-		get_RGB(map, str);
+		get_rgb(map, str);
 }

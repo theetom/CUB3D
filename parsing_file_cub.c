@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file_cub.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:19:49 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/10 14:23:32 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/12 23:09:01 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int got_all_textures(t_map *map)
+static int	got_all_textures(t_map *map)
 {
 	if (!map->no || !map->so || !map->ea || !map->we)
 		return (0);
-	if ((map->ceiling[0] < 0 || map->ceiling[0] > 255) ||
-		(map->ceiling[1] < 0 || map->ceiling[1] > 255) ||
-		(map->ceiling[2] < 0 || map->ceiling[2] > 255))
+	if ((map->ceiling[0] < 0 || map->ceiling[0] > 255)
+		|| (map->ceiling[1] < 0 || map->ceiling[1] > 255)
+		|| (map->ceiling[2] < 0 || map->ceiling[2] > 255))
 		return (0);
-	if ((map->floor[0] < 0 || map->floor[0] > 255) ||
-		(map->floor[1] < 0 || map->floor[1] > 255) ||
-		(map->floor[2] < 0 || map->floor[2] > 255))
+	if ((map->floor[0] < 0 || map->floor[0] > 255)
+		|| (map->floor[1] < 0 || map->floor[1] > 255)
+		|| (map->floor[2] < 0 || map->floor[2] > 255))
 		return (0);
 	return (1);
 }
 
 static int	getting_info(t_map *map, int fd)
 {
-	char *line;
+	char	*line;
 
 	while (!got_all_textures(map))
 	{
@@ -50,12 +50,12 @@ static int	getting_info(t_map *map, int fd)
 static void	alloc_map(t_map *map, char *line, int fd)
 {
 	int	x;
-	int y;
+	int	y;
 
 	y = 0;
 	map->char_map = malloc(sizeof(char *) * 2);
 	if (!map->char_map)
-		return;
+		return ;
 	map->char_map[0] = ft_strdup(line);
 	map->char_map[1] = 0;
 	while (line)
@@ -70,11 +70,12 @@ static void	alloc_map(t_map *map, char *line, int fd)
 	map->max_y = y;
 	map->max_x -= 1;
 }
+
 static int	get_rest_of_the_map(t_map *map, int fd2)
 {
-	int	i;
+	int		i;
 	char	*line;
-	char **temp;
+	char	**temp;
 
 	i = 0;
 	line = get_next_line(fd2);
@@ -101,9 +102,9 @@ static int	get_rest_of_the_map(t_map *map, int fd2)
 
 int	check_file(t_map *map, char *path)
 {
-	int 	fd;
+	int		fd;
 	int		fd2;
-	char 	*line;
+	char	*line;
 	int		i;
 
 	fd = open(path, O_RDONLY);

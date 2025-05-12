@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_dda.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:51:47 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 16:27:24 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/12 22:46:30 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	get_side(t_math *math)
 {
 	int	wall_dir;
 
-	if (math->side == 0) // vertical wall
+	if (math->side == 0)
 	{
 		if (math->stepX > 0)
-			wall_dir = EAST; 
+			wall_dir = EAST;
 		else
 			wall_dir = WEST;
 	}
-	else // horizontal wall
+	else
 	{
 		if (math->stepY > 0)
 			wall_dir = SOUTH;
@@ -33,14 +33,14 @@ int	get_side(t_math *math)
 	return (wall_dir);
 }
 
-void ray_dda(t_math *math, t_data *data)
+void	ray_dda(t_math *math, t_data *data)
 {
 	bool	hit;
 
 	hit = 0;
-	while(hit == 0 && (math->map_x >= 0 && math->map_y >= 0)) // ver se essa condicao (desnessaria)
+	while (hit == 0 && (math->map_x >= 0 && math->map_y >= 0))
 	{
-		if(math->sideDistX < math->sideDistY) // vai dar orientacao parede mudar depois
+		if (math->sideDistX < math->sideDistY)
 		{
 			math->sideDistX += math->deltaDistX;
 			math->map_x += math->stepX;
@@ -52,14 +52,10 @@ void ray_dda(t_math *math, t_data *data)
 			math->map_y += math->stepY;
 			math->side = 1;
 		}
-		if ((math->map_x >= 0 && math->map_y >= 0)) // ver se essa condicao (desnessaria)
+		if ((math->map_x >= 0 && math->map_y >= 0))
 		{
-			// printf("%d %d\n", math->map_x, math->map_y);
-			// printf("%d\n", data->worldMap[math->map_y][math->map_x]);
-			if(data->worldMap[math->map_y][math->map_x] > 0)
-			{
+			if (data->worldMap[math->map_y][math->map_x] > 0)
 				hit = 1;
-			}
 			math->wall_dir = get_side(math);
 		}
 	}

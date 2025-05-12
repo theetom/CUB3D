@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/12 15:40:55 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:12:54 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 bool	has_movement(bool *mov)
 {
-	int n = 0;
+	int n;
+
+	n = 0;
 	while (n <= 3)
 	{
 		if (mov[n] == true)
@@ -71,19 +73,17 @@ int main(int argc, char *argv[])
 	t_data	data;
 	t_map	map;
 	bool	i;
-	data.map = &map;
 
+	data.map = &map;
 	if (parsing_map(argc, argv, &map) == 1)
 		return (1);
 	data.worldMap = map.int_map;
-
 	data.posX = map.p_x;
-	data.posY = map.p_y;  //x and y start position
+	data.posY = map.p_y;
 	convert_orientation(&data, map.player_direction);
-	data.planeX = 0, data.planeY = 0.66; //the 2d raycaster version of camera plane
-
-	data.time = 0; //time of current frame
-	data.oldTime = 0; //time of previous frame
+	data.planeX = 0, data.planeY = 0.66;
+	data.time = 0;
+	data.oldTime = 0;
 	i = ((bool)mlx_data_init(&data));
 	if (i == false)
 		return (1);
