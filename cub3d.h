@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/12 15:43:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:05:09 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ typedef struct s_texture
 	char *addr;
 }	t_texture;
 
-
 typedef struct s_data
 {
-	bool		hooks[4];
+	int			hooks[4];
+	int			debug;
 	t_texture	texture[4];
 	t_map		*map;
 	void		*img;
@@ -129,8 +129,9 @@ void		init_math(t_data *data, t_math *math, int x);
 void		find_ray_angle(t_math *math, t_data *data);
 void		draw_column(t_data *data, t_math *math, int x, int h);
 int			color_arr_int(int a, int b, int c);
-
-void ft_movement(t_data *data);
+int			render(t_data *data);
+void		ft_movement(t_data *data);
+void		convert_orientation(t_data *data, char pos);
 
 //	TIME
 

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:28:50 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/12 12:47:06 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:44:57 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	clean_textures(t_map *map)
 
 void	clean_map(t_map *map)
 {
-	int i;
+	int	i;
 
 	if (map->char_map)
 		free_char_array(map->char_map);

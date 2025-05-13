@@ -3,39 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/12 23:12:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:16:47 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	has_movement(bool *mov)
+static int	ft_data_init(t_data *data)
 {
-	int n;
-
-	n = 0;
-	while (n <= 3)
-	{
-		if (mov[n] == true)
-			return true;
-		n++;
-	}
-	return false;
-}
-
-int	render(t_data *data)
-{
-	mlx_destroy_image(data->mlx, data->img);
-	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
-	if (has_movement(data->hooks) == true)
-		ft_movement(data);
-	create_image(data);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
-	display_fps(data);
-	return 0;
+	data->hooks[0] = 0;
+	data->hooks[1] = 0;
+	data->hooks[2] = 0;
+	data->hooks[3] = 0;
+	data->debug = 0;
+	data->time = 0;
+	data->oldTime = 0;
 }
 
 static int mlx_data_init(t_data *data)
@@ -54,20 +39,6 @@ static int mlx_data_init(t_data *data)
 	return (1);
 }
 
-int convert_orientation(t_data *data, char pos)
-{
-	data->dirX = 0;
-	data->dirY = 0;
-	if (pos == 'N')
-		data->dirX = 1;
-	if (pos == 'S')
-		data->dirX = -1;
-	if (pos == 'W')
-		data->dirY = -1;
-	if (pos == 'E')
-		data->dirY = 1;
-}
-
 int main(int argc, char *argv[])
 {
 	t_data	data;
@@ -81,14 +52,11 @@ int main(int argc, char *argv[])
 	data.posX = map.p_x;
 	data.posY = map.p_y;
 	convert_orientation(&data, map.player_direction);
-	data.planeX = 0, data.planeY = 0.66;
-	data.time = 0;
-	data.oldTime = 0;
 	i = ((bool)mlx_data_init(&data));
 	if (i == false)
 		return (1);
+	ft_data_init(&data);
 	get_textures_from_xpm(&data, map.textures);
-	create_image(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_loop(data.mlx);
