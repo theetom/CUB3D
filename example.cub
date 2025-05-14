@@ -1,7 +1,7 @@
-NO ./textures/AnyConv.com__BRICK_4A.xpm
-SO ./textures/AnyConv.com__SAND_1A.xpm
-WE ./textures/AnyConv.com__STEEL_1A.xpm
-EA ./textures/AnyConv.com__TECH_4E.xpm
+NO            ./textures/AnyConv.com__BRICK_4A.xpma              
+SO       ./textures/AnyConv.com__SAND_1A.xpm              
+WE                     ./textures/AnyConv.com__STEEL_1A.xpm          
+EA                        ./textures/AnyConv.com__TECH_4E.xpm         
 
 F                1,2,3
 C             253,254,255
