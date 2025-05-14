@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:28:50 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/14 16:02:13 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/14 23:26:55 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	delete_everything(t_data *data)
 	clean_textures(data->map);
 	while (n < 4)
 	{
-		if (data->texture[n].t_img != NULL)
+		if ((data->texture[n]).t_img != NULL)
 			mlx_destroy_image(data->mlx, data->texture[n].t_img);
 		n++;
 	}
