@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:25:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/13 17:47:11 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:54:25 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 static void	ft_east(t_data *data)
 {
-	data->dirX = 1;
-	data->dirY = 0;
-	data->planeX = 0;
-	data->planeY = 0.66;
+	data->dir_x = 1;
+	data->dir_y = 0;
+	data->plane_x = 0;
+	data->plane_y = 0.66;
 }
 
 static void	ft_west(t_data *data)
 {
-	data->dirX = -1;
-	data->dirY = 0;
-	data->planeX = 0;
-	data->planeY = -0.66;
+	data->dir_x = -1;
+	data->dir_y = 0;
+	data->plane_x = 0;
+	data->plane_y = -0.66;
 }
 
 static void	ft_north(t_data *data)
 {
-	data->dirX = 0;
-	data->dirY = -1;
-	data->planeX = 0.66;
-	data->planeY = 0;
+	data->dir_x = 0;
+	data->dir_y = -1;
+	data->plane_x = 0.66;
+	data->plane_y = 0;
 }
 
 static void	ft_south(t_data *data)
 {
-	data->dirX = 0;
-	data->dirY = 1;
-	data->planeX = -0.66;
-	data->planeY = 0;
+	data->dir_x = 0;
+	data->dir_y = 1;
+	data->plane_x = -0.66;
+	data->plane_y = 0;
 }
 
 

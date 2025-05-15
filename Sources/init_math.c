@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:39:35 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/14 10:54:57 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:54:25 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void init_math(t_data *data, t_math *math, int x)
 {
 	math->camera_x = 2 * x / (double)(data->img_w) - 1;
-	math->ray_dir_x = data->dirX + data->planeX * math->camera_x;
-	math->ray_dir_y = data->dirY + data->planeY * math->camera_x;
+	math->ray_dir_x = data->dir_x + data->plane_x * math->camera_x;
+	math->ray_dir_y = data->dir_y + data->plane_y * math->camera_x;
 	math->map_x = (int)data->pos_x;
 	math->map_y = (int)data->pos_y;
 	if (math->ray_dir_x == 0)
-		math->deltaDistX = 1e30;
+		math->delta_dist_x = 1e30;
 	else
-		math->deltaDistX = fabs(1.0 / math->ray_dir_x);
+		math->delta_dist_x = fabs(1.0 / math->ray_dir_x);
 	if (math->ray_dir_y == 0)
-		math->deltaDistY = 1e30;
+		math->delta_dist_y = 1e30;
 	else
-		math->deltaDistY = fabs(1.0 / math->ray_dir_y);
-	// math->deltaDistX = (math->ray_dir_x == 0) ? 1e30 : fabs(1.0 / math->ray_dir_x);
-	// math->deltaDistY = (math->ray_dir_y == 0) ? 1e30 : fabs(1.0 / math->ray_dir_y);
+		math->delta_dist_y = fabs(1.0 / math->ray_dir_y);
+	// math->delta_dist_x = (math->ray_dir_x == 0) ? 1e30 : fabs(1.0 / math->ray_dir_x);
+	// math->delta_dist_y = (math->ray_dir_y == 0) ? 1e30 : fabs(1.0 / math->ray_dir_y);
 	math->hit = 0;
 }

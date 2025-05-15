@@ -6,7 +6,7 @@
 #    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 16:37:07 by toferrei          #+#    #+#              #
-#    Updated: 2025/05/14 12:43:26 by toferrei         ###   ########.fr        #
+#    Updated: 2025/05/15 16:35:42 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SOURCES		=	$(SRC)clean.c \
 				$(SRC)get_color.c \
 				$(SRC)get_textures_from_xpm.c \
 				$(SRC)get_ticks.c \
+				$(SRC)init_data.c \
 				$(SRC)init_math.c \
 				$(SRC)main.c \
 				$(SRC)my_pixel_put.c \

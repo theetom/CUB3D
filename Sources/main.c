@@ -6,22 +6,11 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/14 15:58:43 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:54:47 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	ft_data_init(t_data *data)
-{
-	data->hooks[0] = 0;
-	data->hooks[1] = 0;
-	data->hooks[2] = 0;
-	data->hooks[3] = 0;
-	data->debug = 0;
-	data->time = 0;
-	data->oldTime = 0;
-}
 
 static int mlx_data_init(t_data *data)
 {
@@ -30,7 +19,7 @@ static int mlx_data_init(t_data *data)
 	mlx_get_screen_size(data->mlx, &data->img_w, &data->img_h);
 	data->img_w /= 2;
 	data->img_h /= 2;
-	if ((data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, "My CUB3D!")) == NULL)
+	if ((data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, NULL)) == NULL)
 		return (0);
 	ft_hooks(data);
 	mlx_do_key_autorepeatoff(data->mlx);
@@ -39,28 +28,17 @@ static int mlx_data_init(t_data *data)
 	return (1);
 }
 
-void free_texture_char(char **textures)
-{
-	int n;
-	n = 0;
-	while (textures[n])
-	{
-		free(textures[n++]);
-	}
-	free(textures[n]);
-	free(textures);
-}
-
 int main(int argc, char *argv[])
 {
 	t_data	data;
 	t_map	map;
 	bool	i;
 
+	ft_bzero(&data, sizeof data);
 	data.map = &map;
 	if (parsing_map(argc, argv, &map) == 1)
 		return (1);
-	data.worldMap = map.int_map;
+	data.world_map = map.int_map;
 	data.pos_x = map.p_x;
 	data.pos_y = map.p_y;
 	convert_orientation(&data, map.player_direction);
@@ -70,7 +48,6 @@ int main(int argc, char *argv[])
 	ft_data_init(&data);
 	if (get_textures_from_xpm(&data, map.textures) == 0)
 	{
-		// free_texture_char(map.textures);
 		printf("texture error\n");
 		delete_everything(&data);
 	}

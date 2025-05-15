@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 18:03:22 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/14 16:01:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:57:57 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	import_texture(t_data *data, char *xpm_file_path, t_texture *texture)
 {
-	texture->t_img = 0;
 	if ((texture->t_img = mlx_xpm_file_to_image(data->mlx, \
 					xpm_file_path, \
 					&(texture->t_width), \

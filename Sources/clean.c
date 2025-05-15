@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:28:50 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/14 23:26:55 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:44:04 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void free_texture_char(char **textures)
+{
+	int n;
+
+	n = 0;
+	while (textures[n])
+		free(textures[n++]);
+	free(textures[n]);
+	free(textures);
+}
+
 
 void	clean_textures(t_map *map)
 {
@@ -54,7 +66,6 @@ int	delete_everything(t_data *data)
 			mlx_destroy_image(data->mlx, data->texture[n].t_img);
 		n++;
 	}
-	printf("ola\n");
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);

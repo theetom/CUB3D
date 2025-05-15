@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:45:02 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/13 18:05:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:22:15 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int ft_keyrelease(int k, t_data *data)
 		data->hooks[2] = 0;
 	if (k == 100)
 		data->hooks[3] = 0;
+	if (k == 65505)
+		data->speed = 1;
 	return (0);
 }
 
@@ -41,6 +43,8 @@ int	ft_keypress(int k, t_data *data)
 		data->debug = 1;
 	if (k == 32 && data->debug == 1)
 		data->debug = 0;
+	if (k == 65505)
+		data->speed = 3;
 	return 0;
 }
 

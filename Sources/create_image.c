@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:55:03 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/09 17:57:07 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:53:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ const t_ColorRGB RGB_Yellow = {255, 255, 0};
 
 	while (y < h)
 	{
-		floor.rayDirX0 = data->dirX - data->planeX;
-		floor.rayDirY0 = data->dirY - data->planeY;
-		floor.rayDirX1 = data->dirX + data->planeX;
-		floor.rayDirY1 = data->dirY + data->planeY;
+		floor.rayDirX0 = data->dirX - data->plane_x;
+		floor.rayDirY0 = data->dir_y - data->planeY;
+		floor.rayDirX1 = data->dirX + data->plane_x;
+		floor.rayDirY1 = data->dir_y + data->planeY;
 		floor.p = y - data->img_h / 2;
 		floor.posZ = 0.5 * data->img_h;
 		floor.rowDistance = floor.posZ / floor.p;

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/14 13:09:28 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:55:32 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,55 +36,54 @@ enum DIR{
 
 typedef struct s_map
 {
-	char 	**char_map; //alloc
-	int		**int_map;	////alloc
-	int		max_x;
-	int		max_y;
-	char	player_direction;
-	float	p_x;
-	float	p_y;
-	int		floor[3];
-	int		ceiling[3];
-	char	*no; //alloc
-	char	*so; //alloc
-	char	*we; //alloc
-	char	*ea; //alloc
-	char	**textures; //alloc
-}			t_map;
+	char 		**char_map; //alloc
+	int			**int_map;	////alloc
+	int			max_x;
+	int			max_y;
+	char		player_direction;
+	float		p_x;
+	float		p_y;
+	int			floor[3];
+	int			ceiling[3];
+	char		*no; //alloc
+	char		*so; //alloc
+	char		*we; //alloc
+	char		*ea; //alloc
+	char		**textures; //alloc
+}	t_map;
 
-typedef struct s_math
+typedef struct	s_math
 {
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	int		stepX;
-	int		stepY;
-	int		wall_dir;
-
-	int		hit;
-	int		side;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			wall_dir;
+	int			hit;
+	int			side;
 }	t_math;
 
 
-typedef struct s_texture
+typedef struct	s_texture
 {
-	void	*t_img;
-	int		t_height;
-	int		t_width;
-	int		bit_p_pixel;
-	int		size_line;
-	int		endian;
-	char	*addr;
+	void		*t_img;
+	int			t_height;
+	int			t_width;
+	int			bit_p_pixel;
+	int			size_line;
+	int			endian;
+	char		*addr;
 }	t_texture;
 
-typedef struct s_data
+typedef struct	s_data
 {
 	int			hooks[4];
 	int			debug;
@@ -103,12 +102,14 @@ typedef struct s_data
 	double		rotSpeed;
 	double 		pos_x;
 	double		pos_y;
-	double 		dirX;
-	double		dirY; //initial direction vector
-	double 		planeX, planeY; //the 2d raycaster version of camera plane
+	double 		dir_x;
+	double		dir_y; //initial direction vector
+	double 		plane_x;
+	double		plane_y; //the 2d raycaster version of camera plane
 	double 		time; //time of current frame
-	double 		oldTime; //time of previous frame
-	int			**worldMap;
+	double 		old_time; //time of previous frame
+	int			**world_map;
+	int			speed;
 }	t_data;
 
 typedef struct s_ColorRGB
@@ -120,6 +121,7 @@ t_ColorRGB	dimColor(t_ColorRGB color);
 int			color_atoi(t_ColorRGB color);
 
 // int			import_texture(t_data *data, char *xpm_file_path, t_texture *texture);
+void		ft_data_init(t_data *data);
 int			get_color_from_image(int x, int y, t_texture *texture);
 int			get_textures_from_xpm(t_data *data, char **textures);
 void		ft_hooks(t_data *data);
@@ -143,18 +145,19 @@ double		getTicks(void);
 
 // parsing
 
-int 	parsing_map(int argc, char **argv, t_map *map);
-int		check_file(t_map *map, char *path);
-void	check_which_texture(t_map *map, char *str);
-void	free_char_array(char **strs);
-int		check_player_info(t_map *map);
-int		check_map_input(char **map);
-int 	check_if_closed(char **map);
-int 	copy_map_to_int(t_map *map);
+int 		parsing_map(int argc, char **argv, t_map *map);
+int			check_file(t_map *map, char *path);
+void		check_which_texture(t_map *map, char *str);
+void		free_char_array(char **strs);
+int			check_player_info(t_map *map);
+int			check_map_input(char **map);
+int 		check_if_closed(char **map);
+int 		copy_map_to_int(t_map *map);
 
 // clean
-void	clean_textures(t_map *map);
-void	clean_map(t_map *map);
-int		delete_everything(t_data *data);
+void		free_texture_char(char **textures);
+void		clean_textures(t_map *map);
+void		clean_map(t_map *map);
+int			delete_everything(t_data *data);
 
 # endif

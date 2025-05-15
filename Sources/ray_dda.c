@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_dda.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:51:47 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/12 22:46:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:54:47 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	get_side(t_math *math)
 
 	if (math->side == 0)
 	{
-		if (math->stepX > 0)
+		if (math->step_x > 0)
 			wall_dir = EAST;
 		else
 			wall_dir = WEST;
 	}
 	else
 	{
-		if (math->stepY > 0)
+		if (math->step_y > 0)
 			wall_dir = SOUTH;
 		else
 			wall_dir = NORTH;
@@ -40,21 +40,21 @@ void	ray_dda(t_math *math, t_data *data)
 	hit = 0;
 	while (hit == 0 && (math->map_x >= 0 && math->map_y >= 0))
 	{
-		if (math->sideDistX < math->sideDistY)
+		if (math->side_dist_x < math->side_dist_y)
 		{
-			math->sideDistX += math->deltaDistX;
-			math->map_x += math->stepX;
+			math->side_dist_x += math->delta_dist_x;
+			math->map_x += math->step_x;
 			math->side = 0;
 		}
 		else
 		{
-			math->sideDistY += math->deltaDistY;
-			math->map_y += math->stepY;
+			math->side_dist_y += math->delta_dist_y;
+			math->map_y += math->step_y;
 			math->side = 1;
 		}
 		if ((math->map_x >= 0 && math->map_y >= 0))
 		{
-			if (data->worldMap[math->map_y][math->map_x] > 0)
+			if (data->world_map[math->map_y][math->map_x] > 0)
 				hit = 1;
 			math->wall_dir = get_side(math);
 		}

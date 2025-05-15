@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/14 11:07:06 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:52:40 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 	int drawEnd;
 	
 	if(math->side == 0)
-		math->perpWallDist = (math->sideDistX - math->deltaDistX);
+		math->perp_wall_dist = (math->side_dist_x - math->delta_dist_x);
 	else
-		math->perpWallDist = (math->sideDistY - math->deltaDistY);
-	lineHeight = (int)( h / math->perpWallDist); // * 0.75;
+		math->perp_wall_dist = (math->side_dist_y - math->delta_dist_y);
+	lineHeight = (int)( h / math->perp_wall_dist); // * 0.75;
 	drawStart = -lineHeight / 2 + h / 2;
 	if(drawStart < 0)
 		drawStart = 0;
@@ -46,9 +46,9 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 
 	double wallX;
 	if (math->side == 0)
-		wallX = data->pos_y + math->perpWallDist * math->ray_dir_y;
+		wallX = data->pos_y + math->perp_wall_dist * math->ray_dir_y;
 	else
-		wallX = data->pos_x + math->perpWallDist * math->ray_dir_x;
+		wallX = data->pos_x + math->perp_wall_dist * math->ray_dir_x;
 	wallX -= floor((wallX));
 
 	int texX = (int)(wallX * (double)(data->texture[texNum].t_width));
