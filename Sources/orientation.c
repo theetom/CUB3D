@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:25:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 16:54:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:18:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ static void	ft_south(t_data *data)
 	data->plane_y = 0;
 }
 
-
-void convert_orientation(t_data *data, char pos)
+void	convert_orientation(t_data *data, char pos)
 {
 	if (pos == 'N')
 		ft_north(data);

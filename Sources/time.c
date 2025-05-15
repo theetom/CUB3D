@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:49:34 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 16:54:39 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:26:42 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	display_fps(t_data *data)
 	data->time = getTicks();
 	frame_time = (data->time - data->old_time) / 1000.0;
 	data->old_time = data->time;
-	data->moveSpeed = frame_time * 5.0;
-	data->rotSpeed = frame_time * 3.0;
+	data->move_speed = frame_time * 5.0;
+	data->rot_speed = frame_time * 3.0;
 	if (data->debug == 1)
 	{
 		if (frame_time > 0)
@@ -31,7 +31,8 @@ void	display_fps(t_data *data)
 		else
 			sprintf(fps_text, "FPS: --");
 		mlx_string_put(data->mlx, data->mlx_win, 10, 20, 0x00FFFFFF, fps_text);
-		mlx_string_put(data->mlx, data->mlx_win, 10, 40, 0x00FFFFFF, speed_text);
+		mlx_string_put(data->mlx, data->mlx_win, \
+						10, 40, 0x00FFFFFF, speed_text);
 		sprintf(ptr, "dir x : %f dir y : %f", data->dir_x, data->dir_y);
 		mlx_string_put(data->mlx, data->mlx_win, 10, 60, 0x00FFFFFF, ptr);
 	}

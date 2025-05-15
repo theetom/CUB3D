@@ -6,25 +6,28 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 16:54:47 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:29:30 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int mlx_data_init(t_data *data)
+static int	mlx_data_init(t_data *data)
 {
-	if ((data->mlx = mlx_init()) == NULL)
+	data->mlx = mlx_init();
+	if (data->mlx == NULL)
 		return (0);
 	mlx_get_screen_size(data->mlx, &data->img_w, &data->img_h);
 	data->img_w /= 2;
 	data->img_h /= 2;
-	if ((data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, NULL)) == NULL)
+	data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, NULL);
+	if (data->mlx_win == NULL)
 		return (0);
 	ft_hooks(data);
 	mlx_do_key_autorepeatoff(data->mlx);
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
+									&data->line_length, &data->endian);
 	return (1);
 }
 
@@ -32,7 +35,7 @@ int main(int argc, char *argv[])
 {
 	t_data	data;
 	t_map	map;
-	bool	i;
+	int		i;
 
 	ft_bzero(&data, sizeof data);
 	data.map = &map;
@@ -42,8 +45,8 @@ int main(int argc, char *argv[])
 	data.pos_x = map.p_x;
 	data.pos_y = map.p_y;
 	convert_orientation(&data, map.player_direction);
-	i = ((bool)mlx_data_init(&data));
-	if (i == false)
+	i = mlx_data_init(&data);
+	if (i == 0)
 		return (1);
 	ft_data_init(&data);
 	if (get_textures_from_xpm(&data, map.textures) == 0)

@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 16:55:32 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:18:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUB3D_H
+#ifndef CUB3D_H
 # define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
@@ -27,7 +27,8 @@
 
 # define _OPEN_SYS_ITOA_EXT
 
-enum DIR{
+enum e_DIR
+{
 	EAST,
 	WEST,
 	SOUTH,
@@ -36,7 +37,7 @@ enum DIR{
 
 typedef struct s_map
 {
-	char 		**char_map; //alloc
+	char		**char_map; //alloc
 	int			**int_map;	////alloc
 	int			max_x;
 	int			max_y;
@@ -52,7 +53,7 @@ typedef struct s_map
 	char		**textures; //alloc
 }	t_map;
 
-typedef struct	s_math
+typedef struct s_math
 {
 	double		camera_x;
 	double		ray_dir_x;
@@ -71,8 +72,7 @@ typedef struct	s_math
 	int			side;
 }	t_math;
 
-
-typedef struct	s_texture
+typedef struct s_texture
 {
 	void		*t_img;
 	int			t_height;
@@ -83,7 +83,7 @@ typedef struct	s_texture
 	char		*addr;
 }	t_texture;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int			hooks[4];
 	int			debug;
@@ -98,35 +98,35 @@ typedef struct	s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	double		moveSpeed;
-	double		rotSpeed;
-	double 		pos_x;
+	double		move_speed;
+	double		rot_speed;
+	double		pos_x;
 	double		pos_y;
-	double 		dir_x;
+	double		dir_x;
 	double		dir_y; //initial direction vector
-	double 		plane_x;
+	double		plane_x;
 	double		plane_y; //the 2d raycaster version of camera plane
-	double 		time; //time of current frame
-	double 		old_time; //time of previous frame
+	double		time; //time of current frame
+	double		old_time; //time of previous frame
 	int			**world_map;
 	int			speed;
 }	t_data;
 
 typedef struct s_ColorRGB
 {
-	unsigned char r, g, b;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 }	t_ColorRGB;
 
 t_ColorRGB	dimColor(t_ColorRGB color);
 int			color_atoi(t_ColorRGB color);
 
-// int			import_texture(t_data *data, char *xpm_file_path, t_texture *texture);
 void		ft_data_init(t_data *data);
 int			get_color_from_image(int x, int y, t_texture *texture);
 int			get_textures_from_xpm(t_data *data, char **textures);
 void		ft_hooks(t_data *data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void		draw_vertical_line(int x, int start, int end, int color, t_data *data);
 int			create_image(t_data *data);
 void		ray_dda(t_math *math, t_data *data);
 void		init_math(t_data *data, t_math *math, int x);
@@ -137,27 +137,26 @@ int			render(t_data *data);
 void		ft_movement(t_data *data);
 void		convert_orientation(t_data *data, char pos);
 
-//	TIME
+//	Time
 
 void		display_fps(t_data *data);
 double		getTicks(void);
 
+//	Parsing
 
-// parsing
-
-int 		parsing_map(int argc, char **argv, t_map *map);
+int			parsing_map(int argc, char **argv, t_map *map);
 int			check_file(t_map *map, char *path);
 void		check_which_texture(t_map *map, char *str);
 void		free_char_array(char **strs);
 int			check_player_info(t_map *map);
 int			check_map_input(char **map);
-int 		check_if_closed(char **map);
-int 		copy_map_to_int(t_map *map);
+int			check_if_closed(char **map);
+int			copy_map_to_int(t_map *map);
 
-// clean
+//	Clean
 void		free_texture_char(char **textures);
 void		clean_textures(t_map *map);
 void		clean_map(t_map *map);
 int			delete_everything(t_data *data);
 
-# endif
+#endif

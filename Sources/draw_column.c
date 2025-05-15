@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 16:52:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:11:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,4 @@ void draw_column(t_data *data, t_math *math, int x, int h)
 	draw_ceiling(data, data->img_h, &y, x, color_arr_int(data->map->ceiling[0],\
 							data->map->ceiling[1],\
 							data->map->ceiling[2]));
-
-	// color = get_color(math);
-/* 	if (math->side == 1)
-		color = dimColor(color); */
-	// printf("x;%d start;%d end;%d color;%d\n",x, drawStart, drawEnd, color_atoi(color));
-	// draw_vertical_line(x, drawStart, drawEnd, color_atoi(color), data);
 }

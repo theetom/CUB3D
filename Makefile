@@ -6,7 +6,7 @@
 #    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 16:37:07 by toferrei          #+#    #+#              #
-#    Updated: 2025/05/15 16:35:42 by toferrei         ###   ########.fr        #
+#    Updated: 2025/05/15 17:11:42 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ SOURCES		=	$(SRC)clean.c \
 				$(SRC)create_image.c \
 				$(SRC)dimColor.c \
 				$(SRC)draw_column.c \
-				$(SRC)draw_vertical_line.c \
 				$(SRC)find_ray_angle.c \
 				$(SRC)ft_hooks.c \
 				$(SRC)ft_movement.c \

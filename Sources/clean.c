@@ -6,15 +6,15 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:28:50 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/15 16:44:04 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:57:08 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void free_texture_char(char **textures)
+void	free_texture_char(char **textures)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	while (textures[n])
@@ -22,7 +22,6 @@ void free_texture_char(char **textures)
 	free(textures[n]);
 	free(textures);
 }
-
 
 void	clean_textures(t_map *map)
 {
@@ -54,7 +53,7 @@ void	clean_map(t_map *map)
 
 int	delete_everything(t_data *data)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	mlx_do_key_autorepeaton(data->mlx);

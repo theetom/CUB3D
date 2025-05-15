@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:23:45 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/14 15:31:49 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:20:30 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static char	*check_spaces(char *str)
 {
-	int	n;
-	int m;
-	char *result;
+	int		n;
+	int		m;
+	char	*result;
 
 	n = 0;
 	m = 0;
 	while (str[n] == ' ')
 		n++;
-	result = malloc (sizeof *result * (ft_strlen(&(str[n])) + 1));
+	result = malloc (sizeof result * (ft_strlen(&(str[n])) + 1));
 	while (str[n] && str[n] != ' ')
 	{
 		result[m] = str[n];
