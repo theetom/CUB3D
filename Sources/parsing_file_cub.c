@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:19:49 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/14 11:11:16 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:15:49 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,15 +105,19 @@ int	check_file(t_map *map, char *path)
 	int		fd2;
 	char	*line;
 
+	printf("ola\n");
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (0);
+	printf("ola\n");
 	fd2 = open(path, O_RDONLY);
 	if (fd2 == -1)
 		return (0);
 	if (getting_info(map, fd))
 		return (0);
 	line = get_next_line(fd);
+	write(1, "ola\n", 4);
+	printf("olaola\n");
 	while (!ft_strcmp(line, "\n"))
 	{
 		free (line);

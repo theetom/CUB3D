@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/16 01:13:29 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:40:17 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,3 @@ int	main(int argc, char *argv[])
 	mlx_loop(data.mlx);
 	return (0);
 }
-
-/* [ cos(a) -sin(a) ]
-[ sin(a)  cos(a) ] */
