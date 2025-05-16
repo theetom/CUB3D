@@ -1,0 +1,46 @@
+==23545== Invalid read of size 4
+==23545==    at 0x110667: ft_move_forward (ft_movement.c:19)
+==23545==    by 0x110C65: ft_movement (ft_movement.c:63)
+==23545==    by 0x110D7A: render (ft_render.c:34)
+==23545==    by 0x1142FC: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==23545==    by 0x11153A: main (main.c:59)
+==23545==  Address 0x4d33d48 is 0 bytes after a block of size 184 alloc'd
+==23545==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23545==    by 0x1132C9: ft_calloc (in /home/etom/Escola42/cubo3d/cub3d)
+==23545==    by 0x112897: copy_map_to_int (parsing_utils.c:114)
+==23545==    by 0x112B59: check_map (parsing.c:40)
+==23545==    by 0x112CCA: parsing_map (parsing.c:76)
+==23545==    by 0x111425: main (main.c:42)
+==23545==
+==23545== Invalid read of size 8
+==23545==    at 0x112E43: ray_dda (ray_dda.c:57)
+==23545==    by 0x10FD87: render_walls (create_image.c:32)
+==23545==    by 0x10FDFE: create_image (create_image.c:42)
+==23545==    by 0x110D86: render (ft_render.c:35)
+==23545==    by 0x1142FC: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==23545==    by 0x11153A: main (main.c:59)
+==23545==  Address 0x4d33750 is 0 bytes after a block of size 128 alloc'd
+==23545==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23545==    by 0x112827: copy_map_to_int (parsing_utils.c:108)
+==23545==    by 0x112B59: check_map (parsing.c:40)
+==23545==    by 0x112CCA: parsing_map (parsing.c:76)
+==23545==    by 0x111425: main (main.c:42)
+==23545==
+==23545== Invalid read of size 4
+==23545==    at 0x112E56: ray_dda (ray_dda.c:57)
+==23545==    by 0x10FD87: render_walls (create_image.c:32)
+==23545==    by 0x10FDFE: create_image (create_image.c:42)
+==23545==    by 0x110D86: render (ft_render.c:35)
+==23545==    by 0x1142FC: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==23545==    by 0x11153A: main (main.c:59)
+==23545==  Address 0xb8 is not stack'd, malloc'd or (recently) free'd
+==23545==
+==23545==
+==23545== Process terminating with default action of signal 11 (SIGSEGV)
+==23545==  Access not within mapped region at address 0xB8
+==23545==    at 0x112E56: ray_dda (ray_dda.c:57)
+==23545==    by 0x10FD87: render_walls (create_image.c:32)
+==23545==    by 0x10FDFE: create_image (create_image.c:42)
+==23545==    by 0x110D86: render (ft_render.c:35)
+==23545==    by 0x1142FC: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==23545==    by 0x11153A: main (main.c:59)

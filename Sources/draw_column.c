@@ -3,79 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   draw_column.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 17:11:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 00:44:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_ceiling(t_data *data, int end, int *y, int x, int color)
+void	find_wall_size(t_math *math, t_column *column, int h)
 {
-	while (*y < end)
+	if (math->side == 0)
+		math->perp_wall_dist = (math->side_dist_x - math->delta_dist_x);
+	else
+		math->perp_wall_dist = (math->side_dist_y - math->delta_dist_y);
+	column->line_h = (int)(h / math->perp_wall_dist);
+	column->draw_start = -column->line_h / 2 + h / 2;
+	if (column->draw_start < 0)
+		column->draw_start = 0;
+	column->draw_end = column->line_h / 2 + h / 2;
+	if (column->draw_end >= h)
+		column->draw_end = h - 1;
+}
+
+void	find_texture_values(t_data *data, t_math *math, t_column *column, int h)
+{
+	column->tex_num = math->wall_dir;
+	if (math->side == 0)
+		column->wall_x = data->pos_y + math->perp_wall_dist * math->ray_dir_y;
+	else
+		column->wall_x = data->pos_x + math->perp_wall_dist * math->ray_dir_x;
+	column->wall_x -= floor((column->wall_x));
+	column->tex_x = (int)(column->wall_x * \
+						(double)(data->texture[column->tex_num].t_width));
+	if (math->side == 0 && math->ray_dir_x > 0)
+		column->tex_x = (data->texture[0].t_width) - column->tex_x - 1;
+	if (math->side == 1 && math->ray_dir_y < 0)
+		column->tex_x = (data->texture[0].t_width) - column->tex_x - 1;
+	column->step = 1.0 * (data->texture[column->tex_num].t_height) \
+					/ column->line_h;
+	column->tex_pos = (column->draw_start - h / 2 + column->line_h / 2) \
+						* column->step;
+}
+
+void	draw_wall(t_data *data, t_column *column, int *y, int x)
+{
+	int	color;
+	int	tex_y;
+
+	while (*y <= column->draw_end)
 	{
+		tex_y = (int)column->tex_pos \
+				% (data->texture[column->tex_num].t_height);
+		column->tex_pos += column->step;
+		color = get_color_from_image(column->tex_x, tex_y, \
+									&(data->texture[column->tex_num]));
 		my_mlx_pixel_put(data, x, *y, color);
 		(*y)++;
 	}
 }
 
-void draw_column(t_data *data, t_math *math, int x, int h)
+void	draw_column(t_data *data, t_math *math, int x, int h)
 {
-	int lineHeight;
-	int drawStart;
-	int drawEnd;
-	
-	if(math->side == 0)
-		math->perp_wall_dist = (math->side_dist_x - math->delta_dist_x);
-	else
-		math->perp_wall_dist = (math->side_dist_y - math->delta_dist_y);
-	lineHeight = (int)( h / math->perp_wall_dist); // * 0.75;
-	drawStart = -lineHeight / 2 + h / 2;
-	if(drawStart < 0)
-		drawStart = 0;
-	drawEnd = lineHeight / 2 + h / 2;
-	if(drawEnd >= h)
-		drawEnd = h - 1;
+	t_column	column;
+	int			y;
 
-
-	// TEXTURE
-
-	int texNum = math->wall_dir; // replace 0 math->wall_dir
-
-	double wallX;
-	if (math->side == 0)
-		wallX = data->pos_y + math->perp_wall_dist * math->ray_dir_y;
-	else
-		wallX = data->pos_x + math->perp_wall_dist * math->ray_dir_x;
-	wallX -= floor((wallX));
-
-	int texX = (int)(wallX * (double)(data->texture[texNum].t_width));
-	if(math->side == 0 && math->ray_dir_x > 0)
-		texX = (data->texture[0].t_width) - texX - 1;
-	if(math->side == 1 && math->ray_dir_y < 0)
-		texX = (data->texture[0].t_width) - texX - 1;
-
-
-	double step = 1.0 * (data->texture[texNum].t_height) / lineHeight;
-	double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
-
-	int y = 0;
-	draw_ceiling(data, drawStart, &y, x, \
-						color_arr_int(data->map->floor[0],\
-							data->map->floor[1],\
-							data->map->floor[2]));
-	y = drawStart;
-	while(y <= drawEnd)
-    {
-		int texY = (int)texPos & (data->texture[texNum].t_height - 1);
-        texPos += step;
-        int color = get_color_from_image(texX, texY, &(data->texture[texNum]));
-		my_mlx_pixel_put(data, x, y, color);
-		y++;
-    }
-	draw_ceiling(data, data->img_h, &y, x, color_arr_int(data->map->ceiling[0],\
-							data->map->ceiling[1],\
-							data->map->ceiling[2]));
+	find_wall_size(math, &column, h);
+	find_texture_values(data, math, &column, h);
+	y = 0;
+	draw_floor(data, column.draw_start, &y, x);
+	y = column.draw_start;
+	draw_wall(data, &column, &y, x);
+	draw_ceiling(data, data->img_h, &y, x);
 }

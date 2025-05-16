@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
+#    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 16:37:07 by toferrei          #+#    #+#              #
-#    Updated: 2025/05/15 17:11:42 by toferrei         ###   ########.fr        #
+#    Updated: 2025/05/16 00:49:35 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,8 @@ SRC			=	Sources/
 SOURCES		=	$(SRC)clean.c \
 				$(SRC)color_atoi.c \
 				$(SRC)create_image.c \
-				$(SRC)dimColor.c \
 				$(SRC)draw_column.c \
+				$(SRC)draw_floor_ceiling.c \
 				$(SRC)find_ray_angle.c \
 				$(SRC)ft_hooks.c \
 				$(SRC)ft_movement.c \

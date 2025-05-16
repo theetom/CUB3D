@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:45:02 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 17:23:21 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 01:14:04 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int ft_keyrelease(int k, t_data *data)
+int	ft_keyrelease(int k, t_data *data)
 {
 	if (k == 32)
 		data->debug = 0;
@@ -45,7 +45,7 @@ int	ft_keypress(int k, t_data *data)
 		data->debug = 1;
 	if (k == 65505)
 		data->speed = 3;
-	return 0;
+	return (0);
 }
 
 void	ft_hooks(t_data *data)

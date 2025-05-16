@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:28:50 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/15 16:57:08 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 01:16:35 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	delete_everything(t_data *data)
 	int	n;
 
 	n = 0;
-	mlx_do_key_autorepeaton(data->mlx);
 	clean_map(data->map);
 	clean_textures(data->map);
 	while (n < 4)
@@ -65,9 +64,15 @@ int	delete_everything(t_data *data)
 			mlx_destroy_image(data->mlx, data->texture[n].t_img);
 		n++;
 	}
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
+	if (data->img != NULL)
+		mlx_destroy_image(data->mlx, data->img);
+	if (data->mlx_win != NULL)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+	if (data->mlx != NULL)
+	{
+		mlx_do_key_autorepeaton(data->mlx);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
 	exit(0);
 }

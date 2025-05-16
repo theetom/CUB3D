@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 17:18:20 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 01:13:46 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,19 @@ typedef struct s_map
 	char		*we; //alloc
 	char		*ea; //alloc
 	char		**textures; //alloc
-}	t_map;
+}				t_map;
+
+typedef struct s_column
+{
+	int			line_h;
+	int			draw_start;
+	int			draw_end;
+	int			tex_num;
+	double		wall_x;
+	int			tex_x;
+	double		step;
+	double		tex_pos;
+}				t_column;
 
 typedef struct s_math
 {
@@ -70,7 +82,7 @@ typedef struct s_math
 	int			wall_dir;
 	int			hit;
 	int			side;
-}	t_math;
+}				t_math;
 
 typedef struct s_texture
 {
@@ -119,10 +131,9 @@ typedef struct s_ColorRGB
 	unsigned char	b;
 }	t_ColorRGB;
 
-t_ColorRGB	dimColor(t_ColorRGB color);
 int			color_atoi(t_ColorRGB color);
 
-void		ft_data_init(t_data *data);
+void		ft_data_init(t_data *data, t_map *map);
 int			get_color_from_image(int x, int y, t_texture *texture);
 int			get_textures_from_xpm(t_data *data, char **textures);
 void		ft_hooks(t_data *data);
@@ -136,11 +147,13 @@ int			color_arr_int(int a, int b, int c);
 int			render(t_data *data);
 void		ft_movement(t_data *data);
 void		convert_orientation(t_data *data, char pos);
+void		draw_ceiling(t_data *data, int end, int *y, int x);
+void		draw_floor(t_data *data, int end, int *y, int x);
 
 //	Time
 
 void		display_fps(t_data *data);
-double		getTicks(void);
+double		get_ticks(void);
 
 //	Parsing
 

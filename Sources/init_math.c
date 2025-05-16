@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:39:35 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 16:54:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 00:56:11 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_math(t_data *data, t_math *math, int x)
+void	init_math(t_data *data, t_math *math, int x)
 {
 	math->camera_x = 2 * x / (double)(data->img_w) - 1;
 	math->ray_dir_x = data->dir_x + data->plane_x * math->camera_x;
@@ -27,7 +27,5 @@ void init_math(t_data *data, t_math *math, int x)
 		math->delta_dist_y = 1e30;
 	else
 		math->delta_dist_y = fabs(1.0 / math->ray_dir_y);
-	// math->delta_dist_x = (math->ray_dir_x == 0) ? 1e30 : fabs(1.0 / math->ray_dir_x);
-	// math->delta_dist_y = (math->ray_dir_y == 0) ? 1e30 : fabs(1.0 / math->ray_dir_y);
 	math->hit = 0;
 }

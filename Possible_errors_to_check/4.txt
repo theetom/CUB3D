@@ -1,0 +1,40 @@
+==48379== Invalid read of size 4
+==48379==    at 0x1107FA: ft_move_forward (ft_movement.c:19)
+==48379==    by 0x110DF8: ft_movement (ft_movement.c:60)
+==48379==    by 0x110F0D: render (ft_render.c:34)
+==48379==    by 0x11448C: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==48379==    by 0x1116CD: main (main.c:59)
+==48379==  Address 0x4d33c68 is 24 bytes after a block of size 192 in arena "client"
+==48379==
+==48379== Invalid read of size 4
+==48379==    at 0x112FE9: ray_dda (ray_dda.c:57)
+==48379==    by 0x10FD87: render_walls (create_image.c:32)
+==48379==    by 0x10FDFE: create_image (create_image.c:42)
+==48379==    by 0x110F19: render (ft_render.c:35)
+==48379==    by 0x11448C: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==48379==    by 0x1116CD: main (main.c:59)
+==48379==  Address 0x4d33d68 is 24 bytes after a block of size 192 in arena "client"
+==48379==
+==48379== Invalid read of size 4
+==48379==    at 0x110756: ft_move_forward (ft_movement.c:17)
+==48379==    by 0x110DF8: ft_movement (ft_movement.c:60)
+==48379==    by 0x110F0D: render (ft_render.c:34)
+==48379==    by 0x11448C: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==48379==    by 0x1116CD: main (main.c:59)
+==48379==  Address 0x4d33c64 is 20 bytes after a block of size 192 in arena "client"
+==48379==
+==48379== Invalid read of size 4
+==48379==    at 0x1108AD: ft_move_backward (ft_movement.c:25)
+==48379==    by 0x110E10: ft_movement (ft_movement.c:62)
+==48379==    by 0x110F0D: render (ft_render.c:34)
+==48379==    by 0x11448C: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==48379==    by 0x1116CD: main (main.c:59)
+==48379==  Address 0x4d33d60 is 16 bytes after a block of size 192 in arena "client"
+==48379==
+==48379== Invalid read of size 4
+==48379==    at 0x110951: ft_move_backward (ft_movement.c:27)
+==48379==    by 0x110E10: ft_movement (ft_movement.c:62)
+==48379==    by 0x110F0D: render (ft_render.c:34)
+==48379==    by 0x11448C: mlx_loop (in /home/etom/Escola42/cubo3d/cub3d)
+==48379==    by 0x1116CD: main (main.c:59)
+==48379==  Address 0x4d33d60 is 16 bytes after a block of size 192 in arena "client"

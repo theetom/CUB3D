@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:55:03 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 17:05:01 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 01:17:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
-
-// Define color constants
-const t_ColorRGB RGB_Red    = {255, 0, 0};
-const t_ColorRGB RGB_Green  = {0, 255, 0};
-const t_ColorRGB RGB_Blue   = {0, 0, 255};
-const t_ColorRGB RGB_White  = {255, 255, 255};
-const t_ColorRGB RGB_Yellow = {255, 255, 0};
+#include "cub3d.h"
 
 void	render_walls(t_data *data, int h)
 {
@@ -35,10 +28,11 @@ void	render_walls(t_data *data, int h)
 	}
 }
 
-int create_image(t_data *data)
+int	create_image(t_data *data)
 {
-	int h = (data->img_h);
+	int	h;
 
+	h = (data->img_h);
 	render_walls(data, h);
 	return (0);
 }

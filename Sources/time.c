@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:49:34 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 17:26:42 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 00:46:41 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 void	display_fps(t_data *data)
 {
 	double	frame_time;
-	char	fps_text[50];
-	char	speed_text[100];
-	char	ptr[100];
+	char	*fps_text;
+	char	*fps;
 
-	data->time = getTicks();
+	data->time = get_ticks();
 	frame_time = (data->time - data->old_time) / 1000.0;
 	data->old_time = data->time;
 	data->move_speed = frame_time * 5.0;
@@ -27,14 +26,15 @@ void	display_fps(t_data *data)
 	if (data->debug == 1)
 	{
 		if (frame_time > 0)
-			sprintf(fps_text, "FPS: %d", (int)(1.0 / frame_time));
+		{
+			fps = ft_itoa((int)(1.0 / frame_time));
+			fps_text = ft_strjoin("FPS : ", fps);
+			free(fps);
+		}
 		else
-			sprintf(fps_text, "FPS: --");
+			fps_text = ft_strdup("FPS: --");
 		mlx_string_put(data->mlx, data->mlx_win, 10, 20, 0x00FFFFFF, fps_text);
-		mlx_string_put(data->mlx, data->mlx_win, \
-						10, 40, 0x00FFFFFF, speed_text);
-		sprintf(ptr, "dir x : %f dir y : %f", data->dir_x, data->dir_y);
-		mlx_string_put(data->mlx, data->mlx_win, 10, 60, 0x00FFFFFF, ptr);
+		free(fps_text);
 	}
 }
 

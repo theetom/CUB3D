@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/15 17:29:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/16 01:13:29 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	mlx_data_init(t_data *data)
 	mlx_get_screen_size(data->mlx, &data->img_w, &data->img_h);
 	data->img_w /= 2;
 	data->img_h /= 2;
-	data->mlx_win = mlx_new_window(data->mlx, data->img_w, data->img_h, NULL);
+	data->mlx_win = \
+			mlx_new_window(data->mlx, data->img_w, data->img_h, "Our Cub3D");
 	if (data->mlx_win == NULL)
 		return (0);
 	ft_hooks(data);
@@ -31,24 +32,22 @@ static int	mlx_data_init(t_data *data)
 	return (1);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_data	data;
 	t_map	map;
-	int		i;
 
 	ft_bzero(&data, sizeof data);
 	data.map = &map;
 	if (parsing_map(argc, argv, &map) == 1)
 		return (1);
-	data.world_map = map.int_map;
-	data.pos_x = map.p_x;
-	data.pos_y = map.p_y;
+	ft_data_init(&data, &map);
 	convert_orientation(&data, map.player_direction);
-	i = mlx_data_init(&data);
-	if (i == 0)
-		return (1);
-	ft_data_init(&data);
+	if (mlx_data_init(&data) == 0)
+	{
+		printf("mlx init error\n");
+		delete_everything(&data);
+	}
 	if (get_textures_from_xpm(&data, map.textures) == 0)
 	{
 		printf("texture error\n");
@@ -59,8 +58,6 @@ int main(int argc, char *argv[])
 	mlx_loop(data.mlx);
 	return (0);
 }
-
-
 
 /* [ cos(a) -sin(a) ]
 [ sin(a)  cos(a) ] */
