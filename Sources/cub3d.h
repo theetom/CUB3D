@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/21 00:59:58 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/21 22:47:40 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,9 @@ typedef struct s_texture
 
 typedef struct s_data
 {
-	int			hooks[4];
+	int			strafe;
+	int			move;
+	int			rotate;
 	int			mouse;
 	int			debug;
 	t_texture	texture[4];
@@ -132,6 +134,7 @@ typedef struct s_ColorRGB
 	unsigned char	b;
 }	t_ColorRGB;
 
+void		draw_minimap(t_data *data);
 int			color_atoi(t_ColorRGB color);
 
 void		ft_data_init(t_data *data, t_map *map);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fabio <fabio@student.42.fr>                +#+  +:+       +#+         #
+#    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 16:37:07 by toferrei          #+#    #+#              #
-#    Updated: 2025/05/21 00:17:06 by fabio            ###   ########.fr        #
+#    Updated: 2025/05/21 22:47:28 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRC			=	Sources/
 # SGN			=	Signals/
 # TOK			=	Tokens/
 
-SOURCES		=	$(SRC)clean.c \
+SOURCES		=	$(SRC)minimap.c \
+				$(SRC)clean.c \
 				$(SRC)color_atoi.c \
 				$(SRC)create_image.c \
 				$(SRC)draw_column.c \

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/16 00:44:13 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/21 22:38:07 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	find_texture_values(t_data *data, t_math *math, t_column *column, int h)
 		column->wall_x = data->pos_x + math->perp_wall_dist * math->ray_dir_x;
 	column->wall_x -= floor((column->wall_x));
 	column->tex_x = (int)(column->wall_x * \
-						(double)(data->texture[column->tex_num].t_width));
+						(double)(data->texture[column->tex_num].t_width)); // se calhar protejer aqui
 	if (math->side == 0 && math->ray_dir_x > 0)
 		column->tex_x = (data->texture[0].t_width) - column->tex_x - 1;
 	if (math->side == 1 && math->ray_dir_y < 0)
