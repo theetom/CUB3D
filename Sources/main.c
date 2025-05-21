@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/22 00:42:34 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/22 00:50:58 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int argc, char *argv[])
 	int x = 0; int y = 0;
 	while(y < data.map->max_y)
 	{
+		x= 0;
 		while(x < data.map->max_x)
 		{
 			printf("%d", data.world_map[y][x]);

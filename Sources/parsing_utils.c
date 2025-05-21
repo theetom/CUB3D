@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 21:52:24 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/22 00:33:41 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/22 00:57:49 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,17 @@ int	copy_map_to_int(t_map *map)
 		map->int_map[y] = ft_calloc(map->max_x/* ft_strlen(map->char_map[y]) */, sizeof(int));
 		if (!map->int_map[y])
 			return (0);
-		while (x < map->max_x/* map->char_map[y][x] && map->char_map[y][x] != '\n' */)
+		while (map->char_map[y][x] && x < map->max_x/* map->char_map[y][x] && map->char_map[y][x] != '\n' */)
 		{
 			if (map->char_map[y][x] == '0' || map->char_map[y][x] == '1')
 				map->int_map[y][x] = map->char_map[y][x] - '0';
 			else
 				map->int_map[y][x] = 2;
+			x++;
+		}
+		while (x < map->max_x)
+		{
+			map->int_map[y][x] = 2;
 			x++;
 		}
 		y++;
