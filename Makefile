@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
+#    By: fabio <fabio@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 16:37:07 by toferrei          #+#    #+#              #
-#    Updated: 2025/05/16 12:08:25 by toferrei         ###   ########.fr        #
+#    Updated: 2025/05/21 00:17:06 by fabio            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,19 +51,20 @@ SOURCES		=	$(SRC)clean.c \
 				$(SRC)parsing_file_cub.c \
 				$(SRC)parsing_textures.c \
 				$(SRC)parsing_utils.c \
+				$(SRC)parsing_utils2.c \
 				$(SRC)parsing.c \
 				$(SRC)ray_dda.c \
 				$(SRC)time.c
-				
-				
+
+
 
 OBJECTS		=	$(patsubst $(SRC)%.c, $(OBJ_DIR)%.o, $(SOURCES))
 
 # Compiler and Flags
 CC			=	gcc
-CFLAGS		=	-g -Wall -Wextra -Werror 
+CFLAGS		=	-g -Wall -Wextra -Werror
 LDFLAGS		=	-L$(LIBFT) -lft
-MLXFLAGS	=	-I/usr/include -Iminiliblibx-linux -O3 -Lminilibx-linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLXFLAGS	=	-I/usr/include -Iminiliblibx-linux -O3 -Lminilibx-linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 
 # Default Target
 all: $(NAME)

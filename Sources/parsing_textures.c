@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:23:45 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/15 17:20:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/21 01:04:00 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*check_spaces(char *str)
 	while (str[n] == ' ')
 		n++;
 	result = malloc (sizeof result * (ft_strlen(&(str[n])) + 1));
-	while (str[n] && str[n] != ' ')
+	while (str[n])
 	{
 		result[m] = str[n];
 		n++;
@@ -59,6 +59,8 @@ static int	check_if_valid_input(char **numbers)
 			j += 2;
 		while (numbers[i][j] == ' ')
 			j++;
+		if (numbers[i][j] == '\n' || !numbers[i][j])
+			return (1);
 		while (numbers[i][j] && numbers[i][j] != '\n')
 		{
 			if (!ft_isdigit(numbers[i][j]))
@@ -99,6 +101,7 @@ static void	get_rgb(t_map *map, char *str)
 	free_char_array(numbers);
 }
 
+
 void	check_which_texture(t_map *map, char *str)
 {
 	while (*str == ' ')
@@ -123,6 +126,6 @@ void	check_which_texture(t_map *map, char *str)
 		map->ea = ft_substr(str, 3, ft_strlen(str) - 4);
 		map->ea = check_spaces(map->ea);
 	}
-	else if (ft_strncmp(str, "C ", 2) == 0 || ft_strncmp(str, "F ", 2) == 0)
+	else if (ft_strncmp(str, "C ", 2) == 0 || ft_strncmp(str, "F ", 2) == 0 )
 		get_rgb(map, str);
 }

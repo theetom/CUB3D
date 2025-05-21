@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/16 18:04:39 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/21 00:59:58 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,8 @@ int			check_player_info(t_map *map);
 int			check_map_input(char **map);
 int			check_if_closed(char **map);
 int			copy_map_to_int(t_map *map);
+int			check_if_double(t_map *map, char *str);
+int 		check_textures(char **textures);
 
 //	Clean
 void		free_texture_char(char **textures);

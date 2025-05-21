@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file_cub.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:19:49 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/16 12:15:49 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/21 01:09:12 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,22 @@ static int	getting_info(t_map *map, int fd)
 		if (!line)
 			return (1);
 		if (ft_strncmp (line, "\n", 1))
+		{
+			if (check_if_double(map, line))
+			{
+				free(line);
+				return (1);
+			}
 			check_which_texture(map, line);
+		}
 		free(line);
 	}
 	map->textures[0] = map->no;
 	map->textures[1] = map->so;
 	map->textures[2] = map->we;
 	map->textures[3] = map->ea;
+	if (check_textures(map->textures))
+		return (1);
 	return (0);
 }
 
@@ -105,19 +114,15 @@ int	check_file(t_map *map, char *path)
 	int		fd2;
 	char	*line;
 
-	printf("ola\n");
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	printf("ola\n");
 	fd2 = open(path, O_RDONLY);
-	if (fd2 == -1)
+	if (fd == -1 || fd2 == -1)
 		return (0);
 	if (getting_info(map, fd))
 		return (0);
 	line = get_next_line(fd);
-	write(1, "ola\n", 4);
-	printf("olaola\n");
+	if (!line)
+		return (0);
 	while (!ft_strcmp(line, "\n"))
 	{
 		free (line);
