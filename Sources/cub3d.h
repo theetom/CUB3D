@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/21 22:47:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:25:15 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,17 @@ typedef struct s_column
 	double		tex_pos;
 }				t_column;
 
+typedef struct s_minimap
+{
+	int			pos_x;
+	int			pos_y;
+	int			x;
+	int			y;
+	int			color;
+	int			tile_size;
+	int			player_size;
+}				t_minimap;
+
 typedef struct s_math
 {
 	double		camera_x;
@@ -93,7 +104,7 @@ typedef struct s_texture
 	int			size_line;
 	int			endian;
 	char		*addr;
-}	t_texture;
+}				t_texture;
 
 typedef struct s_data
 {
@@ -125,17 +136,9 @@ typedef struct s_data
 	double		old_time; //time of previous frame
 	int			**world_map;
 	int			speed;
-}	t_data;
-
-typedef struct s_ColorRGB
-{
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}	t_ColorRGB;
+}				t_data;
 
 void		draw_minimap(t_data *data);
-int			color_atoi(t_ColorRGB color);
 
 void		ft_data_init(t_data *data, t_map *map);
 int			get_color_from_image(int x, int y, t_texture *texture);
@@ -148,11 +151,23 @@ void		init_math(t_data *data, t_math *math, int x);
 void		find_ray_angle(t_math *math, t_data *data);
 void		draw_column(t_data *data, t_math *math, int x, int h);
 int			color_arr_int(int a, int b, int c);
-int			render(t_data *data);
-void		ft_movement(t_data *data);
 void		convert_orientation(t_data *data, char pos);
+
+// Render
+
+int			render(t_data *data);
 void		draw_ceiling(t_data *data, int end, int *y, int x);
 void		draw_floor(t_data *data, int end, int *y, int x);
+
+//	Movement
+
+void		ft_rotate_right(t_data *data);
+void		ft_rotate_left(t_data *data);
+void		ft_move_left(t_data *data);
+void		ft_move_right(t_data *data);
+void		ft_move_forward(t_data *data);
+void		ft_move_backward(t_data *data);
+void		ft_movement(t_data *data);
 
 //	Time
 
@@ -170,7 +185,7 @@ int			check_map_input(char **map);
 int			check_if_closed(char **map);
 int			copy_map_to_int(t_map *map);
 int			check_if_double(t_map *map, char *str);
-int 		check_textures(char **textures);
+int			check_textures(char **textures);
 
 //	Clean
 void		free_texture_char(char **textures);

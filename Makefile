@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 16:37:07 by toferrei          #+#    #+#              #
-#    Updated: 2025/05/21 22:47:28 by toferrei         ###   ########.fr        #
+#    Updated: 2025/05/22 16:07:11 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,10 @@ SOURCES		=	$(SRC)minimap.c \
 				$(SRC)find_ray_angle.c \
 				$(SRC)ft_hooks.c \
 				$(SRC)ft_movement.c \
+				$(SRC)ft_move_rotate.c \
+				$(SRC)ft_move_strafe.c \
+				$(SRC)ft_move_up_down.c \
 				$(SRC)ft_render.c \
-				$(SRC)get_color.c \
 				$(SRC)get_textures_from_xpm.c \
 				$(SRC)get_ticks.c \
 				$(SRC)init_data.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:23:45 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/21 01:04:00 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/22 15:55:17 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ static void	get_rgb(t_map *map, char *str)
 	free_char_array(numbers);
 }
 
-
 void	check_which_texture(t_map *map, char *str)
 {
 	while (*str == ' ')
@@ -126,6 +125,6 @@ void	check_which_texture(t_map *map, char *str)
 		map->ea = ft_substr(str, 3, ft_strlen(str) - 4);
 		map->ea = check_spaces(map->ea);
 	}
-	else if (ft_strncmp(str, "C ", 2) == 0 || ft_strncmp(str, "F ", 2) == 0 )
+	else if (ft_strncmp(str, "C ", 2) == 0 || ft_strncmp(str, "F ", 2) == 0)
 		get_rgb(map, str);
 }

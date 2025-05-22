@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 22:30:19 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/21 01:01:46 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/22 15:55:44 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static int	check_if_double_rgb(t_map *map, char *str)
 {
@@ -27,7 +26,6 @@ static int	check_if_double_rgb(t_map *map, char *str)
 	}
 	return (0);
 }
-
 
 int	check_if_double(t_map *map, char *str)
 {
@@ -58,8 +56,8 @@ int	check_if_double(t_map *map, char *str)
 
 int	check_textures(char **textures)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (textures[i])

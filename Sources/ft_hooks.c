@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:45:02 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/21 22:33:47 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:58:07 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int ft_movement_hooks_on_release(int k, t_data *data)
+int	ft_movement_hooks_on_release(int k, t_data *data)
 {
 	if (k == 97 || k == 100)
 		data->strafe = 0;
@@ -44,9 +44,9 @@ int	ft_keyrelease(int k, t_data *data)
 	}
 	return (0);
 }
-	
-	int	ft_keypress(int k, t_data *data)
-	{
+
+int	ft_keypress(int k, t_data *data)
+{
 	if (k == 65307)
 		delete_everything(data);
 	if (k == 119)
@@ -90,7 +90,7 @@ int	ft_mouse(int x, int y, t_data *data)
 
 void	ft_hooks(t_data *data)
 {
-	mlx_hook(data->mlx_win, 06,  1l << 6, ft_mouse, data);
+	mlx_hook(data->mlx_win, 06, 1l << 6, ft_mouse, data);
 	mlx_hook(data->mlx_win, 02, (1L << 0), ft_keypress, data);
 	mlx_hook(data->mlx_win, 03, (1L << 1), ft_keyrelease, data);
 	mlx_hook(data->mlx_win, 17, 1L << 17, delete_everything, data);

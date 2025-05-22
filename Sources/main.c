@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/22 00:50:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:06:30 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,6 @@ int	main(int argc, char *argv[])
 	if (parsing_map(argc, argv, &map) == 1)
 		return (1);
 	ft_data_init(&data, &map);
-
-
-	int x = 0; int y = 0;
-	while(y < data.map->max_y)
-	{
-		x= 0;
-		while(x < data.map->max_x)
-		{
-			printf("%d", data.world_map[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-
-
-
-
-
-
 	convert_orientation(&data, map.player_direction);
 	if (mlx_data_init(&data) == 0)
 	{
