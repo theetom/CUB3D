@@ -6,7 +6,7 @@
 #    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 16:37:07 by toferrei          #+#    #+#              #
-#    Updated: 2025/05/22 16:07:11 by toferrei         ###   ########.fr        #
+#    Updated: 2025/05/23 13:40:19 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,26 +19,23 @@ OBJ_DIR		=	Objects/
 
 SRC			=	Sources/
 
-# BLT			=	Built_ins/
-# ERR			=	Error_management/
-# EXC			=	Executor/
-# EXP			=	Expanse/
-# INI			=	Initialization/
-# LST			=	List_utils/
-# PRS			=	Parsing/
-# QOT			=	Quotes/
-# RED			=	Redirections_handler/
-# SGN			=	Signals/
-# TOK			=	Tokens/
+HKS			=	Hooks/
+MMP			=	Minimap/
 
-SOURCES		=	$(SRC)minimap.c \
+SOURCES		=	$(SRC)$(MMP)minimap.c \
+				$(SRC)$(MMP)draw_tile.c \
+				$(SRC)$(MMP)draw_map.c \
+				$(SRC)$(MMP)draw_player.c \
+				$(SRC)$(HKS)ft_hooks.c \
+				$(SRC)$(HKS)minimap_hooks.c \
+				$(SRC)$(HKS)mouse_hook.c \
+				$(SRC)$(HKS)movement_hooks.c \
 				$(SRC)clean.c \
 				$(SRC)color_atoi.c \
 				$(SRC)create_image.c \
 				$(SRC)draw_column.c \
 				$(SRC)draw_floor_ceiling.c \
 				$(SRC)find_ray_angle.c \
-				$(SRC)ft_hooks.c \
 				$(SRC)ft_movement.c \
 				$(SRC)ft_move_rotate.c \
 				$(SRC)ft_move_strafe.c \

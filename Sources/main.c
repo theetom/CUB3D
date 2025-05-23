@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/22 16:06:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/23 09:59:50 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ static int	mlx_data_init(t_data *data)
 
 int	main(int argc, char *argv[])
 {
-	t_data	data;
-	t_map	map;
+	t_data		data;
+	t_map		map;
+	t_minimap	minimap;
 
 	ft_bzero(&data, sizeof data);
 	data.map = &map;
+	data.minimap = &minimap;
 	if (parsing_map(argc, argv, &map) == 1)
 		return (1);
-	ft_data_init(&data, &map);
+	ft_data_init(&data);
 	convert_orientation(&data, map.player_direction);
 	if (mlx_data_init(&data) == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/22 16:25:15 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:40:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_minimap
 	int			color;
 	int			tile_size;
 	int			player_size;
+	int			hook_flag;
 }				t_minimap;
 
 typedef struct s_math
@@ -108,13 +109,14 @@ typedef struct s_texture
 
 typedef struct s_data
 {
+	t_texture	texture[4];
+	t_map		*map;
+	t_minimap	*minimap;
 	int			strafe;
 	int			move;
 	int			rotate;
 	int			mouse;
 	int			debug;
-	t_texture	texture[4];
-	t_map		*map;
 	void		*img;
 	void		*mlx;
 	void		*mlx_win;
@@ -138,12 +140,9 @@ typedef struct s_data
 	int			speed;
 }				t_data;
 
-void		draw_minimap(t_data *data);
-
-void		ft_data_init(t_data *data, t_map *map);
+void		ft_data_init(t_data *data);
 int			get_color_from_image(int x, int y, t_texture *texture);
 int			get_textures_from_xpm(t_data *data, char **textures);
-void		ft_hooks(t_data *data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			create_image(t_data *data);
 void		ray_dda(t_math *math, t_data *data);
@@ -153,7 +152,14 @@ void		draw_column(t_data *data, t_math *math, int x, int h);
 int			color_arr_int(int a, int b, int c);
 void		convert_orientation(t_data *data, char pos);
 
-// Render
+//	Hooks
+
+void		ft_hooks(t_data *data);
+int			ft_minimap_hooks(int k, t_minimap *minimap);
+int			ft_mouse(int x, int y, t_data *data);
+int			ft_movement_hooks_on_release(int k, t_data *data);
+
+//	Render
 
 int			render(t_data *data);
 void		draw_ceiling(t_data *data, int end, int *y, int x);
@@ -168,6 +174,13 @@ void		ft_move_right(t_data *data);
 void		ft_move_forward(t_data *data);
 void		ft_move_backward(t_data *data);
 void		ft_movement(t_data *data);
+
+// 	Minimap
+
+void		draw_minimap(t_data *data);
+void		draw_tile(t_data *data, t_minimap *minimap, int color);
+void		draw_map(t_data *data, t_minimap *minimap);
+void		draw_player(t_data *data, t_minimap *minimap);
 
 //	Time
 

@@ -6,42 +6,22 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:45:02 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/22 15:58:07 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:58:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-int	ft_movement_hooks_on_release(int k, t_data *data)
-{
-	if (k == 97 || k == 100)
-		data->strafe = 0;
-	if (k == 119 || k == 115)
-		data->move = 0;
-	if (data->mouse != 1 && (k == 65361 || k == 65363))
-		data->rotate = 0;
-	return (0);
-}
+#include "../cub3d.h"
 
 int	ft_keyrelease(int k, t_data *data)
 {
 	ft_movement_hooks_on_release(k, data);
+	ft_minimap_hooks(k, data->minimap);
 	if (k == 65505)
 		data->speed = 1;
 	if (k == 32)
-	{
-		if (data->debug == 0)
-			data->debug = 1;
-		else
-			data->debug = 0;
-	}
+		data->debug ^= 1;
 	if (k == 65288)
-	{
-		if (data->mouse == 0)
-			data->mouse = 1;
-		else
-			data->mouse = 0;
-	}
+		data->mouse ^= 1;
 	return (0);
 }
 
@@ -63,28 +43,6 @@ int	ft_keypress(int k, t_data *data)
 		data->rotate = 1;
 	if (k == 65505)
 		data->speed = 3;
-	return (0);
-}
-
-int	ft_mouse(int x, int y, t_data *data)
-{
-	int	base;
-
-	(void)y;
-	if (data->mouse == 1)
-	{
-		mlx_mouse_move(data->mlx, data->mlx_win, \
-					data->img_w / 2, data->img_h / 2);
-		base = data->img_w / 2;
-		if (base == x)
-		{
-			data->rotate = 0;
-		}
-		else if (base > x)
-			data->rotate = -1;
-		else
-			data->rotate = 1;
-	}
 	return (0);
 }
 

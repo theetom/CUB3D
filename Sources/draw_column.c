@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/22 15:56:55 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/23 10:17:15 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	draw_column(t_data *data, t_math *math, int x, int h)
 	find_wall_size(math, &column, h);
 	find_texture_values(data, math, &column, h);
 	y = 0;
-	draw_floor(data, column.draw_start, &y, x);
+	draw_ceiling(data, column.draw_start, &y, x);
 	y = column.draw_start;
 	draw_wall(data, &column, &y, x);
-	draw_ceiling(data, data->img_h, &y, x);
+	draw_floor(data, data->img_h, &y, x);
 }
