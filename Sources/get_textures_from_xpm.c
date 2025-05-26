@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures_from_xpm.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 18:03:22 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/16 00:53:11 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:19:47 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static int	import_texture(t_data *data, char *xpm_file_path, \
 	return (1);
 }
 
-int	get_textures_from_xpm(t_data *data, char **textures)
+int	get_textures_from_xpm(t_data *data, char **texture_paths, t_texture *texture)
 {
 	int	i;
 
 	i = 0;
-	while (textures[i])
+	while (texture_paths[i])
 	{
-		if (import_texture(data, textures[i], &(data->texture[i])) == 0)
+		if (import_texture(data, texture_paths[i], &(texture[i])) == 0)
 			return (0);
 		i++;
 	}

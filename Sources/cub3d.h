@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/23 13:40:34 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:42:50 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_texture
 typedef struct s_data
 {
 	t_texture	texture[4];
+	t_texture	sprite[5];
 	t_map		*map;
 	t_minimap	*minimap;
 	int			strafe;
@@ -142,7 +143,7 @@ typedef struct s_data
 
 void		ft_data_init(t_data *data);
 int			get_color_from_image(int x, int y, t_texture *texture);
-int			get_textures_from_xpm(t_data *data, char **textures);
+int			get_textures_from_xpm(t_data *data, char **textures, t_texture *texture);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			create_image(t_data *data);
 void		ray_dda(t_math *math, t_data *data);
@@ -174,6 +175,7 @@ void		ft_move_right(t_data *data);
 void		ft_move_forward(t_data *data);
 void		ft_move_backward(t_data *data);
 void		ft_movement(t_data *data);
+int			ft_movement_verifier(t_data *data);
 
 // 	Minimap
 

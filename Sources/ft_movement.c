@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 15:29:01 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/22 16:01:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:42:15 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,12 @@ void	ft_movement(t_data *data)
 		ft_move_left(data);
 	if (data->strafe > 0)
 		ft_move_right(data);
+}
+
+int	ft_movement_verifier(t_data *data)
+{
+	if (data->move != 0 || data->rotate != 0 || data->strafe != 0)
+		return (1);
+	else
+		return (0);
 }

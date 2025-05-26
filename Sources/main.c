@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:58:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/23 09:59:50 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:33:45 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,26 @@ static int	mlx_data_init(t_data *data)
 	return (1);
 }
 
+void	exit_with_error_message(char *message, t_data *data)
+{
+		printf("%s\n", message);
+		delete_everything(data);
+}
+
+char **data_sprites()
+{
+	char **result;
+
+	result = (char*[]){ \
+		"./textures/running/rest.xpm", \
+		"./textures/running/0.xpm", \
+		"./textures/running/1.xpm", \
+		"./textures/running/2.xpm", \
+		"./textures/running/3.xpm", \
+		NULL};
+	return (result);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data		data;
@@ -46,15 +66,11 @@ int	main(int argc, char *argv[])
 	ft_data_init(&data);
 	convert_orientation(&data, map.player_direction);
 	if (mlx_data_init(&data) == 0)
-	{
-		printf("mlx init error\n");
-		delete_everything(&data);
-	}
-	if (get_textures_from_xpm(&data, map.textures) == 0)
-	{
-		printf("texture error\n");
-		delete_everything(&data);
-	}
+		exit_with_error_message("mlx init error", &data);
+	if (get_textures_from_xpm(&data, map.textures, data.texture) == 0)
+		exit_with_error_message("texture error", &data);
+	if (get_textures_from_xpm(&data, data_sprites(), data.sprite) == 0)
+		exit_with_error_message("sprite error", &data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, render, &data);
 	mlx_loop(data.mlx);
