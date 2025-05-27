@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:28:50 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/16 01:16:35 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/28 00:06:19 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,25 @@ void	clean_map(t_map *map)
 	}
 }
 
-int	delete_everything(t_data *data)
+void clean_textures_arr(t_data *data, t_texture *texture)
 {
-	int	n;
+	int n;
 
 	n = 0;
-	clean_map(data->map);
-	clean_textures(data->map);
 	while (n < 4)
 	{
-		if ((data->texture[n]).t_img != NULL)
-			mlx_destroy_image(data->mlx, data->texture[n].t_img);
+		if ((texture[n]).t_img != NULL)
+			mlx_destroy_image(data->mlx, texture[n].t_img);
 		n++;
 	}
+}
+
+int	delete_everything(t_data *data)
+{
+	clean_map(data->map);
+	clean_textures(data->map);
+	clean_textures_arr(data, data->texture);
+	clean_textures_arr(data, data->sprite);
 	if (data->img != NULL)
 		mlx_destroy_image(data->mlx, data->img);
 	if (data->mlx_win != NULL)
