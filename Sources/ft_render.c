@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 14:25:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/26 18:30:00 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:48:44 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int resting_sprite()
 {
-
+	return (0);
 }
 
 /* int moving_sprite()
