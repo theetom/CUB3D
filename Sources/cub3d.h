@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/27 23:58:26 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:47:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct s_texture
 
 typedef struct s_data
 {
-	t_texture	texture[4];
+	t_texture	texture[5];
 	t_texture	sprite[5];
 	t_map		*map;
 	t_minimap	*minimap;
