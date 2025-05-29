@@ -1,17 +1,17 @@
 NO            ./textures/N.xpm
-SO       ./textures/test.xpm
 WE                     ./textures/test.xpm
-EA                        ./textures/test.xpm
+EA                        ./textures/E.xpm
+SO       ./textures/S.xpm
 
 F                253,254,255
 C             100,100,100
-111111111
-100000001
+ 11111111
+ 10000001
 1000000001
 1000000001
 1000000001
 1000000001
-1000N00001
+1000S00001
 1000000001
 1000000001
 1000000001

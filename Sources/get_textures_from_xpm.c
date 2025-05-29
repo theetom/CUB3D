@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 18:03:22 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/28 15:48:15 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:29:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ static int	import_texture(t_data *data, char *xpm_file_path, \
 	return (1);
 }
 
-int	get_textures_from_xpm(t_data *data, char **texture_paths, t_texture *texture)
+int	get_textures_from_xpm(t_data *data, char **t_path, t_texture *texture)
 {
 	int	i;
 
 	i = 0;
-	while (texture_paths[i])
+	while (t_path[i])
 	{
-		if (import_texture(data, texture_paths[i], &(texture[i])) == 0)
+		printf("path :%s\n", t_path[i]);
+		if (import_texture(data, t_path[i], &(texture[i])) == 0)
 			return (0);
 		i++;
 	}

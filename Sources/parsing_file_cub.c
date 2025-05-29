@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file_cub.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:19:49 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/21 01:09:12 by fabio            ###   ########.fr       */
+/*   Updated: 2025/05/29 09:23:52 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static int	getting_info(t_map *map, int fd)
 		}
 		free(line);
 	}
-	map->textures[0] = map->no;
-	map->textures[1] = map->so;
-	map->textures[2] = map->we;
-	map->textures[3] = map->ea;
+	map->textures[3] = map->no;
+	map->textures[2] = map->so;
+	map->textures[1] = map->we;
+	map->textures[0] = map->ea;
 	if (check_textures(map->textures))
 		return (1);
 	return (0);

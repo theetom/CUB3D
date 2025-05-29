@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:28:50 by fabio             #+#    #+#             */
-/*   Updated: 2025/05/28 15:49:21 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:28:27 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	clean_map(t_map *map)
 	}
 }
 
-void clean_textures_arr(t_data *data, t_texture *texture)
+void	clean_textures_arr(t_data *data, t_texture *texture)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	while (n < 4)

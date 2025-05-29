@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:02:37 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/28 15:47:34 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:29:12 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,8 @@ int			render(t_data *data);
 void		draw_ceiling(t_data *data, int end, int *y, int x);
 void		draw_floor(t_data *data, int end, int *y, int x);
 char		**data_sprites(void);
-int			get_textures_from_xpm(t_data *data, char **textures, t_texture *texture);
+int			get_textures_from_xpm(t_data *data, \
+				char **textures, t_texture *texture);
 
 //	Movement
 

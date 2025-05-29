@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 11:40:29 by toferrei          #+#    #+#             */
-/*   Updated: 2025/05/28 15:41:38 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:26:00 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void	draw_wall(t_data *data, t_column *column, int *y, int x)
 		tex_y = (int)column->tex_pos \
 				% (data->texture[column->tex_num].t_height);
 		column->tex_pos += column->step;
-		color = get_color_from_image(data->texture[column->tex_num].t_width - column->tex_x, tex_y, \
-									&(data->texture[column->tex_num]));
+		color = get_color_from_image(\
+			data->texture[column->tex_num].t_width - column->tex_x, tex_y, \
+			&(data->texture[column->tex_num]));
 		my_mlx_pixel_put(data, x, *y, color);
 		(*y)++;
 	}
